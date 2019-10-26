@@ -1,0 +1,27 @@
+@import "styles/style.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+.title {
+  margin-bottom: 25px;
+  font-size: $font-size--larger;
+}
+
+.preview {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+
+  .item {
+    padding: 0;
+    margin: 0;
+    font-size: $font-size--medium;
+  }
+}
