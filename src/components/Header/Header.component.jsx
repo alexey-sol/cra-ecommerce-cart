@@ -1,9 +1,15 @@
 import {Link} from "react-router-dom";
 import {ReactComponent as Logo} from "assets/crown.svg";
 import React from "react";
+import {auth} from "utils/firebase/firebase";
+import {propTypes} from "./Header.validation";
 import styles from "./Header.module.scss";
 
-function Header () {
+Header.propTypes = propTypes;
+
+function Header ({user}) {
+  const signOut = () => auth.signOut();
+
   return (
     <div className={styles.container}>
       <Link
@@ -14,22 +20,28 @@ function Header () {
       </Link>
 
       <ul className={styles.optionsList}>
-        <li>
-          <Link
-            className={styles.optionItem}
-            to="/shop"
-          >
+        <li className={styles.optionItem}>
+          <Link to="/shop">
             SHOP
           </Link>
         </li>
 
-        <li>
-          <Link
-            className={styles.optionItem}
-            to="/contacts"
-          >
+        <li className={styles.optionItem}>
+          <Link to="/contacts">
             CONTACTS
           </Link>
+        </li>
+
+        <li className={styles.optionItem}
+          onClick={user && signOut}>
+          {(user)
+            ? <span>
+              SIGN OUT
+            </span>
+
+            : <Link to="/sign-in">
+              SIGN IN
+            </Link>}
         </li>
       </ul>
     </div>
