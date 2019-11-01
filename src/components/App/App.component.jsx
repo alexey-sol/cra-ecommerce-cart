@@ -4,7 +4,7 @@ import Home from "pages/Home";
 import React, {useEffect, useRef, useState} from "react";
 import Shop from "pages/Shop";
 import SignInAndSignUp from "pages/SignInAndSignUp";
-import {auth} from "utils/firebase/firebase";
+import {auth, createUserProfileDocument} from "utils/firebase/firebase";
 import styles from "./App.module.scss";
 
 function App () {
@@ -12,8 +12,21 @@ function App () {
   const unsubscribeFromAuth = useRef(null);
 
   useEffect(() => {
-    unsubscribeFromAuth.current = auth.onAuthStateChanged(currentUser => {
-      setUser(currentUser);
+    unsubscribeFromAuth.current = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot(snapshot => {
+          const currentUser = {
+            id: snapshot.id,
+            ...snapshot.data()
+          };
+
+          setUser(currentUser);
+        });
+      } else {
+        setUser(null);
+      }
     });
 
     return () => unsubscribeFromAuth.current();

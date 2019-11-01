@@ -1,6 +1,6 @@
 import CustomButton from "components/CustomButton";
 import FormInput from "components/FormInput";
-import React, {useState} from "react";
+import React, {memo, useState} from "react";
 import {signInWithGoogle} from "utils/firebase/firebase";
 import styles from "./SignIn.module.scss";
 
@@ -11,14 +11,10 @@ function SignIn () {
   const handleChange = (event) => {
     const {name, value} = event.target;
 
-    switch (name) {
-      case "email":
-        setEmail(value);
-        break;
-
-      case "password":
-        setPassword(value);
-        break;
+    if (name) {
+      setEmail(value);
+    } else if (password) {
+      setPassword(value);
     }
   };
 
@@ -59,6 +55,7 @@ function SignIn () {
           type="password"
           value={password}
         />
+
         <div className={styles.buttons}>
           <CustomButton type="submit">
             Sign in
@@ -76,4 +73,4 @@ function SignIn () {
   );
 };
 
-export default SignIn;
+export default memo(SignIn);

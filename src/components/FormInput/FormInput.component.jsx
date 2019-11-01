@@ -6,7 +6,7 @@ import styles from "./FormInput.module.scss";
 FormInput.defaultProps = defaultProps;
 FormInput.propTypes = propTypes;
 
-function FormInput ({handleChangle, label, value, ...rest}) {
+function FormInput ({handleChange, label, value, ...rest}) {
   const hasValue = value.length > 0;
   const labelClassNames = classnames(
     styles.label,
@@ -18,7 +18,7 @@ function FormInput ({handleChangle, label, value, ...rest}) {
       <input
         {...rest}
         className={styles.formInput}
-        onChange={handleChangle}
+        onChange={handleChange}
       />
 
       {label && <label className={labelClassNames}>

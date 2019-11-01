@@ -1,0 +1,26 @@
+@import "styles/style.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+
+  .header {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      margin: 10px 0;
+      font-size: $font-size--larger;
+    }
+
+    span {
+      font-size: $font-size--medium;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}
