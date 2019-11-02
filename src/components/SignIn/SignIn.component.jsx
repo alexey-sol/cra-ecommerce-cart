@@ -1,7 +1,7 @@
 import CustomButton from "components/CustomButton";
 import FormInput from "components/FormInput";
 import React, {memo, useState} from "react";
-import {signInWithGoogle} from "utils/firebase/firebase";
+import {auth, signInWithGoogle} from "utils/firebase/firebase";
 import styles from "./SignIn.module.scss";
 
 function SignIn () {
@@ -11,15 +11,24 @@ function SignIn () {
   const handleChange = (event) => {
     const {name, value} = event.target;
 
-    if (name) {
+    const isEmail = name === "email";
+    const isPassword = name === "password";
+
+    if (isEmail) {
       setEmail(value);
-    } else if (password) {
+    } else if (isPassword) {
       setPassword(value);
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(email, password)
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.error(error);
+    }
 
     setEmail("");
     setPassword("");
