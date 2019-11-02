@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import {ReactComponent as Logo} from "assets/crown.svg";
 import React from "react";
 import {auth} from "utils/firebase/firebase";
+import {connect} from "react-redux";
 import {propTypes} from "./Header.validation";
 import styles from "./Header.module.scss";
 
@@ -48,4 +49,12 @@ function Header ({user}) {
   );
 };
 
-export default Header;
+function mapStateToProps ({auth}) {
+  return {
+    user: auth.user
+  };
+}
+
+const ConnectedHeader = connect(mapStateToProps)(Header);
+
+export default ConnectedHeader;

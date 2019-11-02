@@ -1,12 +1,16 @@
 import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
+import App from "components/App/App.component";
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "components/App/App.component";
+import store from "./redux/store";
 
-ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-
-  document.getElementById("root")
+const wrappedApp = (
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
 );
+
+ReactDOM.render(wrappedApp, document.getElementById("root"));

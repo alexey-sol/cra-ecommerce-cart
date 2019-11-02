@@ -13,7 +13,7 @@ const config = {
   storageBucket: "react-clothing-store-257318.appspot.com"
 };
 
-export const createUserProfileDocument = async (userAuth, additionalData) => {
+const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
   const userRef = firestore.doc(`users/${userAuth.uid}`);
@@ -40,12 +40,19 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
 firebase.initializeApp(config);
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+const auth = firebase.auth();
+const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({prompt: "select_account"});
 
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+const signInWithGoogle = () => auth.signInWithPopup(provider);
+
+export {
+  auth,
+  createUserProfileDocument,
+  firestore,
+  signInWithGoogle
+};
 
 export default firebase;
