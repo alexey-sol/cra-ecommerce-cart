@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 
-const {func} = PropTypes;
+const {func, object} = PropTypes;
 
 export const propTypes = {
-  setUser: func.isRequired
+  setUser: func.isRequired,
+  user: object
 };

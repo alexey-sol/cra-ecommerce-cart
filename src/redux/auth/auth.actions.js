@@ -1,4 +1,4 @@
-import {SET_USER} from "./auth.constants";
+import {SET_USER} from "./auth.types";
 
 function setUser (user) {
   return {

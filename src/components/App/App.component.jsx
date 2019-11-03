@@ -1,4 +1,4 @@
-import {Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import Header from "components/Header";
 import Home from "pages/Home";
 import React, {useEffect, useRef} from "react";
@@ -12,8 +12,14 @@ import styles from "./App.module.scss";
 
 App.propTypes = propTypes;
 
-function App ({setUser}) {
+function App ({setUser, user}) {
   const unsubscribeFromAuth = useRef(null);
+
+  const renderSignIn = () => (
+    (user)
+      ? <Redirect to="/" />
+      : <SignInAndSignUp />
+  );
 
   useEffect(() => {
     unsubscribeFromAuth.current = auth.onAuthStateChanged(async (userAuth) => {
@@ -53,12 +59,19 @@ function App ({setUser}) {
         />
 
         <Route
-          component={SignInAndSignUp}
+          exact
           path="/sign-in"
+          render={renderSignIn}
         />
       </Switch>
     </div>
   );
+}
+
+function mapStateToProps ({auth}) {
+  return {
+    user: auth.user
+  };
 }
 
 function mapDispatchToProps (dispatch) {
@@ -67,6 +80,9 @@ function mapDispatchToProps (dispatch) {
   };
 }
 
-const ConnectedApp = connect(null, mapDispatchToProps)(App);
+const ConnectedApp = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
 
 export default ConnectedApp;
