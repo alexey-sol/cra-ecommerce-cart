@@ -1,4 +1,11 @@
-import {TOGGLE_CART_SHOWN} from "./cart.types";
+import {ADD_ITEM_TO_CART, TOGGLE_CART_SHOWN} from "./cart.types";
+
+function addItemToCart (item) {
+  return {
+    payload: item,
+    type: ADD_ITEM_TO_CART
+  };
+}
 
 function toggleCartShown () {
   return {
@@ -7,5 +14,6 @@ function toggleCartShown () {
 }
 
 export {
+  addItemToCart,
   toggleCartShown
 };

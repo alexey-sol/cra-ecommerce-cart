@@ -6,14 +6,18 @@ import styles from "./CustomButton.module.scss";
 CustomButton.defaultProps = defaultProps;
 CustomButton.propTypes = propTypes;
 
-function CustomButton ({children, isGoogleSignIn, ...props}) {
+function CustomButton (props) {
+  const {children, className, isGoogleSignIn, isInverted, ...rest} = props;
+
   const classNames = classnames(
     styles.button,
-    (isGoogleSignIn) ? styles.googleSignIn : ""
+    className,
+    (isGoogleSignIn) ? styles.googleSignIn : "",
+    (isInverted) ? styles.inverted : ""
   );
 
   return (
-    <button {...props} className={classNames}>
+    <button {...rest} className={classNames}>
       {children}
     </button>
   );

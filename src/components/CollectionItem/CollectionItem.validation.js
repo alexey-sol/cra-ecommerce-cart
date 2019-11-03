@@ -1,15 +1,12 @@
 import PropTypes from "prop-types";
 
-const {number, string} = PropTypes;
+const {func, object} = PropTypes;
 
 export const defaultProps = {
-  imageUrl: "",
-  price: 0
+  item: {}
 };
 
 export const propTypes = {
-  id: number.isRequired,
-  imageUrl: string,
-  name: string.isRequired,
-  price: number
+  addItemToCart: func,
+  item: object
 };

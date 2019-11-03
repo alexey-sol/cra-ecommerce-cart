@@ -9,8 +9,11 @@ CollectionPreview.propTypes = propTypes;
 function CollectionPreview ({items, title}) {
   const filteredItemElements = items
     .filter((item, index) => index < 4)
-    .map(({id, ...rest}) => (
-      <CollectionItem key={id} {...rest} />
+    .map(item => (
+      <CollectionItem
+        item={item}
+        key={item.id}
+      />
     ));
 
   return (
