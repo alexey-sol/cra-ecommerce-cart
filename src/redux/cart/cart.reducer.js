@@ -1,5 +1,7 @@
-import {ADD_ITEM_TO_CART, TOGGLE_CART_SHOWN} from "./cart.types";
-import {groupCartItems} from "./cart.utils";
+import {
+  ADD_ITEM_TO_CART, CLEAR_ITEM_FROM_CART, REMOVE_ITEM, TOGGLE_CART_SHOWN
+} from "./cart.types";
+import {groupCartItems, removeItemFromCart} from "./cart.utils";
 
 const INITIAL_STATE = {
   cartIsShown: false,
@@ -14,6 +16,18 @@ function cartReducer (state = INITIAL_STATE, action = {}) {
       return {
         ...state,
         cartItems: groupCartItems(state.cartItems, payload)
+      };
+
+    case CLEAR_ITEM_FROM_CART:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter(({id}) => id !== payload.id)
+      };
+
+    case REMOVE_ITEM:
+      return {
+        ...state,
+        cartItems: removeItemFromCart(state.cartItems, payload)
       };
 
     case TOGGLE_CART_SHOWN:

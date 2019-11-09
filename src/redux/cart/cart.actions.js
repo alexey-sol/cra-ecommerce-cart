@@ -1,9 +1,25 @@
-import {ADD_ITEM_TO_CART, TOGGLE_CART_SHOWN} from "./cart.types";
+import {
+  ADD_ITEM_TO_CART, CLEAR_ITEM_FROM_CART, REMOVE_ITEM, TOGGLE_CART_SHOWN
+} from "./cart.types";
 
 function addItemToCart (item) {
   return {
     payload: item,
     type: ADD_ITEM_TO_CART
+  };
+}
+
+function clearItemFromCart (item) {
+  return {
+    payload: item,
+    type: CLEAR_ITEM_FROM_CART
+  };
+}
+
+function removeItem (item) {
+  return {
+    payload: item,
+    type: REMOVE_ITEM
   };
 }
 
@@ -15,5 +31,7 @@ function toggleCartShown () {
 
 export {
   addItemToCart,
+  clearItemFromCart,
+  removeItem,
   toggleCartShown
 };
