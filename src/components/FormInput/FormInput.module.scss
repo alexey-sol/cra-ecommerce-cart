@@ -25,7 +25,7 @@ $sub-color: grey;
   background: none;
   background-color: white;
   color: $sub-color;
-  font-size: $font-size--large;
+  font-size: $font-size--medium;
 
   &:focus {
     outline: none;
@@ -46,7 +46,7 @@ input[type="password"] {
   left: 5px;
   pointer-events: none;
   color: $sub-color;
-  font-size: $font-size--medium;
+  font-size: $font-size--small;
   font-weight: normal;
   transition: 300ms ease all;
 

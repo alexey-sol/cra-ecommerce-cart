@@ -1,4 +1,5 @@
 import {Redirect, Route, Switch} from "react-router-dom";
+import Checkout from "pages/Checkout";
 import Header from "components/Header";
 import Home from "pages/Home";
 import React, {useEffect, useRef} from "react";
@@ -6,7 +7,9 @@ import Shop from "pages/Shop";
 import SignInAndSignUp from "pages/SignInAndSignUp";
 import {auth, createUserProfileDocument} from "utils/firebase/firebase";
 import {connect} from "react-redux";
+import {createStructuredSelector} from "reselect";
 import {propTypes} from "./App.validation";
+import {selectUser} from "redux/auth/auth.selectors";
 import {setUser} from "redux/auth/auth.actions";
 import styles from "./App.module.scss";
 
@@ -59,6 +62,12 @@ function App ({setUser, user}) {
         />
 
         <Route
+          component={Checkout}
+          exact
+          path="/checkout"
+        />
+
+        <Route
           exact
           path="/sign-in"
           render={renderSignIn}
@@ -68,17 +77,13 @@ function App ({setUser, user}) {
   );
 }
 
-function mapStateToProps ({auth}) {
-  return {
-    user: auth.user
-  };
-}
+const mapStateToProps = createStructuredSelector({
+  user: selectUser
+});
 
-function mapDispatchToProps (dispatch) {
-  return {
-    setUser: (user) => dispatch(setUser(user))
-  };
-}
+const mapDispatchToProps = (dispatch) => ({
+  setUser: (user) => dispatch(setUser(user))
+});
 
 const ConnectedApp = connect(
   mapStateToProps,

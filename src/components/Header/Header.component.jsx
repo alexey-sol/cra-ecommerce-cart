@@ -5,7 +5,10 @@ import CartIcon from "components/CartIcon";
 import React from "react";
 import {auth} from "utils/firebase/firebase";
 import {connect} from "react-redux";
+import {createStructuredSelector} from "reselect";
 import {propTypes} from "./Header.validation";
+import {selectCartIsShown} from "redux/cart/cart.selectors";
+import {selectUser} from "redux/auth/auth.selectors";
 import classnames from "classnames";
 import styles from "./Header.module.scss";
 
@@ -65,12 +68,10 @@ function Header ({cartIsShown, user}) {
   );
 };
 
-function mapStateToProps ({auth, cart}) {
-  return {
-    cartIsShown: cart.cartIsShown,
-    user: auth.user
-  };
-}
+const mapStateToProps = createStructuredSelector({
+  cartIsShown: selectCartIsShown,
+  user: selectUser
+});
 
 const ConnectedHeader = connect(
   mapStateToProps

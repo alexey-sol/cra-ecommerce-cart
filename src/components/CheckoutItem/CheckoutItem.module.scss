@@ -1,0 +1,36 @@
+@import "styles/style.scss";
+
+.container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 100px;
+  padding: 15px 0;
+  border-bottom: 1px solid darkgrey;
+  font-size: $font-size--larger;
+}
+
+.imageContainer {
+  width: 23%;
+  padding-right: 15px;
+
+  .image {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.name,
+.quantity,
+.price {
+  width: 23%;
+}
+
+.quantity {
+  padding-left: 20px;
+}
+
+.removeButton {
+  padding-left: 12px;
+  cursor: pointer;
+}

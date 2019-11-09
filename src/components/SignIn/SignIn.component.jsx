@@ -23,7 +23,7 @@ function SignIn () {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(email, password)
+
     try {
       await auth.signInWithEmailAndPassword(email, password);
     } catch (error) {

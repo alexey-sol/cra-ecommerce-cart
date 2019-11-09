@@ -43,11 +43,9 @@ function CollectionItem ({addItemToCart, item}) {
   );
 };
 
-function mapDispatchToProps (dispatch) {
-  return {
-    addItemToCart: (item) => dispatch(addItemToCart(item))
-  };
-}
+const mapDispatchToProps = (dispatch) => ({
+  addItemToCart: (item) => dispatch(addItemToCart(item))
+});
 
 const ConnectedCollectionItem = connect(
   null,

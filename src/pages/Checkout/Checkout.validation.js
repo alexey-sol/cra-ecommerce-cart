@@ -1,13 +1,13 @@
 import PropTypes from "prop-types";
 
-const {array, func, object} = PropTypes;
+const {array, number} = PropTypes;
 
 export const defaultProps = {
-  cartItems: []
+  cartItems: [],
+  total: 0
 };
 
 export const propTypes = {
   cartItems: array,
-  dispatch: func.isRequired,
-  history: object.isRequired
+  total: number
 };
