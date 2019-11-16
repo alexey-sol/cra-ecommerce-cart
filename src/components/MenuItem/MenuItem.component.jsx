@@ -1,12 +1,13 @@
 import React from "react";
 import {defaultProps, propTypes} from "./MenuItem.validation";
+import {withRouter} from "react-router-dom";
 import classnames from "classnames";
 import styles from "./MenuItem.module.scss";
 
 MenuItem.defaultProps = defaultProps;
 MenuItem.propTypes = propTypes;
 
-function MenuItem ({imageUrl, size, title}) {
+function MenuItem ({imageUrl, history, linkUrl, match, size, title}) {
   const containerClassNames = classnames(
     styles.container,
     styles[size]
@@ -17,7 +18,10 @@ function MenuItem ({imageUrl, size, title}) {
   };
 
   return (
-    <div className={containerClassNames}>
+    <div
+      className={containerClassNames}
+      onClick={() => history.push(`${match.url}${linkUrl}`)}
+    >
       <div
         className={styles.backgroundImage}
         style={backgroundImageStyle}
@@ -36,4 +40,4 @@ function MenuItem ({imageUrl, size, title}) {
   );
 };
 
-export default MenuItem;
+export default withRouter(MenuItem);

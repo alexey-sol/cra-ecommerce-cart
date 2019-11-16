@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
-const {array} = PropTypes;
+const {object} = PropTypes;
 
 export const defaultProps = {
-  collections: []
+  collection: {}
 };
 
 export const propTypes = {
-  collections: array
+  collection: object
 };
