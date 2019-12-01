@@ -13,6 +13,37 @@ const config = {
   storageBucket: "react-clothing-store-257318.appspot.com"
 };
 
+const addCollectionAndDocuments = async (collectionKey, objectsToAdd = []) => {
+  const collectionRef = firestore.collection(collectionKey);
+  const batch = firestore.batch();
+
+  objectsToAdd.forEach(object => {
+    const newDocumentRef = collectionRef.doc();
+    batch.set(newDocumentRef, object);
+  });
+
+  return batch.commit();
+};
+
+const convertCollectionsSnapshotToMap = async (collections) => {
+  const transformedCollections = collections.docs.map(doc => {
+    const {items, title} = doc.data();
+
+    return {
+      id: doc.id,
+      items,
+      routeName: encodeURI(title.toLowerCase()),
+      title
+    };
+  });
+
+  return transformedCollections.reduce((accumulator, collection) => {
+    const collectionTitle = collection.title.toLowerCase();
+    accumulator[collectionTitle] = collection;
+    return accumulator;
+  }, {});
+};
+
 const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return;
 
@@ -49,7 +80,9 @@ provider.setCustomParameters({prompt: "select_account"});
 const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export {
+  addCollectionAndDocuments,
   auth,
+  convertCollectionsSnapshotToMap,
   createUserProfileDocument,
   firestore,
   signInWithGoogle

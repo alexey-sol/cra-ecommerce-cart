@@ -5,7 +5,8 @@ import Home from "pages/Home";
 import React, {useEffect, useRef} from "react";
 import Shop from "pages/Shop";
 import SignInAndSignUp from "pages/SignInAndSignUp";
-import {auth, createUserProfileDocument} from "utils/firebase/firebase";
+import {auth, createUserProfileDocument}
+  from "utils/firebase/firebase";
 import {connect} from "react-redux";
 import {createStructuredSelector} from "reselect";
 import {propTypes} from "./App.validation";
