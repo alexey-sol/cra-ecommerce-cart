@@ -1,14 +1,49 @@
 import {
-  UPDATE_COLLECTIONS
+  FETCH_COLLECTIONS_FAILURE,
+  FETCH_COLLECTIONS_START,
+  FETCH_COLLECTIONS_SUCCESS
 } from "./shop.types";
+import {convertCollectionsSnapshotToMap, firestore}
+  from "utils/firebase/firebase";
 
-function updateCollections (collections) {
+function fetchCollectionsFailure (errorMessage) {
+  return {
+    payload: errorMessage,
+    type: FETCH_COLLECTIONS_FAILURE
+  };
+}
+
+function fetchCollectionsStart () {
+  return {
+    type: FETCH_COLLECTIONS_START
+  };
+}
+
+function fetchCollectionsStartAsync () {
+  return async (dispatch) => {
+    const collectionRef = firestore.collection("collections");
+    dispatch(fetchCollectionsStart());
+
+    try {
+      const snapshot = await collectionRef.get();
+      const collections = convertCollectionsSnapshotToMap(snapshot);
+      dispatch(fetchCollectionsSuccess(collections));
+    } catch (error) {
+      dispatch(fetchCollectionsFailure(error.message));
+    }
+  };
+}
+
+function fetchCollectionsSuccess (collections) {
   return {
     payload: collections,
-    type: UPDATE_COLLECTIONS
+    type: FETCH_COLLECTIONS_SUCCESS
   };
 }
 
 export {
-  updateCollections
+  fetchCollectionsFailure,
+  fetchCollectionsStart,
+  fetchCollectionsStartAsync,
+  fetchCollectionsSuccess
 };

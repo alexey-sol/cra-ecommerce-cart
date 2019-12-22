@@ -2,23 +2,19 @@ import {Redirect, Route, Switch} from "react-router-dom";
 import Checkout from "pages/Checkout";
 import Header from "components/Header";
 import Home from "pages/Home";
-import React, {useEffect, useRef} from "react";
+import React, {useEffect} from "react";
 import Shop from "pages/Shop";
 import SignInAndSignUp from "pages/SignInAndSignUp";
-import {auth, createUserProfileDocument}
-  from "utils/firebase/firebase";
+import {checkUserSession} from "redux/auth/auth.actions";
 import {connect} from "react-redux";
 import {createStructuredSelector} from "reselect";
 import {propTypes} from "./App.validation";
 import {selectUser} from "redux/auth/auth.selectors";
-import {setUser} from "redux/auth/auth.actions";
 import styles from "./App.module.scss";
 
 App.propTypes = propTypes;
 
-function App ({setUser, user}) {
-  const unsubscribeFromAuth = useRef(null);
-
+function App ({checkUserSession, user}) {
   const renderSignIn = () => (
     (user)
       ? <Redirect to="/" />
@@ -26,25 +22,8 @@ function App ({setUser, user}) {
   );
 
   useEffect(() => {
-    unsubscribeFromAuth.current = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-
-        userRef.onSnapshot(snapshot => {
-          const user = {
-            id: snapshot.id,
-            ...snapshot.data()
-          };
-
-          setUser(user);
-        });
-      } else {
-        setUser(null);
-      }
-    });
-
-    return () => unsubscribeFromAuth.current();
-  }, [setUser]);
+    checkUserSession();
+  }, [checkUserSession]);
 
   return (
     <div className={styles.container}>
@@ -83,7 +62,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setUser: (user) => dispatch(setUser(user))
+  checkUserSession: () => dispatch(checkUserSession())
 });
 
 const ConnectedApp = connect(

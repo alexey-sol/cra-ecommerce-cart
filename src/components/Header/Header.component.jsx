@@ -3,20 +3,18 @@ import {ReactComponent as Logo} from "assets/crown.svg";
 import CartDropdown from "components/CartDropdown";
 import CartIcon from "components/CartIcon";
 import React from "react";
-import {auth} from "utils/firebase/firebase";
 import {connect} from "react-redux";
 import {createStructuredSelector} from "reselect";
 import {propTypes} from "./Header.validation";
 import {selectCartIsShown} from "redux/cart/cart.selectors";
 import {selectUser} from "redux/auth/auth.selectors";
+import {signOutStart} from "redux/auth/auth.actions";
 import classnames from "classnames";
 import styles from "./Header.module.scss";
 
 Header.propTypes = propTypes;
 
-function Header ({cartIsShown, user}) {
-  const signOut = () => auth.signOut();
-
+function Header ({cartIsShown, signOutStart, user}) {
   const cartIconItemClassNames = classnames(
     styles.optionItem,
     styles.cartIconItem
@@ -46,7 +44,7 @@ function Header ({cartIsShown, user}) {
 
         <li
           className={styles.optionItem}
-          onClick={user && signOut}
+          onClick={signOutStart}
         >
           {(user)
             ? <span>
@@ -73,8 +71,13 @@ const mapStateToProps = createStructuredSelector({
   user: selectUser
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  signOutStart: () => dispatch(signOutStart())
+});
+
 const ConnectedHeader = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Header);
 
 export default ConnectedHeader;

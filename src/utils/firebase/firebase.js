@@ -25,7 +25,7 @@ const addCollectionAndDocuments = async (collectionKey, objectsToAdd = []) => {
   return batch.commit();
 };
 
-const convertCollectionsSnapshotToMap = async (collections) => {
+const convertCollectionsSnapshotToMap = (collections) => {
   const transformedCollections = collections.docs.map(doc => {
     const {items, title} = doc.data();
 
@@ -71,20 +71,31 @@ const createUserProfileDocument = async (userAuth, additionalData) => {
 
 firebase.initializeApp(config);
 
+const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
+
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({prompt: "select_account"});
+const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({prompt: "select_account"});
 
-const signInWithGoogle = () => auth.signInWithPopup(provider);
+const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
 export {
   addCollectionAndDocuments,
+  getCurrentUser,
   auth,
   convertCollectionsSnapshotToMap,
   createUserProfileDocument,
   firestore,
+  googleProvider,
   signInWithGoogle
 };
 

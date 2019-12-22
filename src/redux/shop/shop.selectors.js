@@ -4,6 +4,16 @@ function selectShop ({shop}) {
   return shop;
 }
 
+export const selectIsCollectionFetching = createSelector(
+  [selectShop],
+  ({isFetching}) => isFetching
+);
+
+export const selectIsCollectionsLoaded = createSelector(
+  [selectShop],
+  ({collections}) => Boolean(collections)
+);
+
 export const selectShopCollections = createSelector(
   [selectShop],
   ({collections}) => collections

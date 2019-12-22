@@ -1,3 +1,3 @@
-import Collection from "./Collection.component";
+import Collection from "./Collection.container";
 
 export default Collection;

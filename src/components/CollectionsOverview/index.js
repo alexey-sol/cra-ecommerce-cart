@@ -1,3 +1,3 @@
-import CollectionsOverview from "./CollectionsOverview.component";
+import CollectionsOverview from "./CollectionsOverview.container";
 
 export default CollectionsOverview;

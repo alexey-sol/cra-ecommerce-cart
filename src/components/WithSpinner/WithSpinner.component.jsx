@@ -12,7 +12,7 @@ function WithSpinner (WrappedComponent) {
         <div className={styles.spinner} />
       </div>
     );
-    console.log(isLoading, rest)
+
     const renderWrappedComponent = () => (
       <WrappedComponent {...rest} />
     );

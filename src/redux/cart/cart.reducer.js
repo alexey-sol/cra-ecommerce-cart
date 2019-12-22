@@ -1,5 +1,9 @@
 import {
-  ADD_ITEM_TO_CART, CLEAR_ITEM_FROM_CART, REMOVE_ITEM, TOGGLE_CART_SHOWN
+  ADD_ITEM_TO_CART,
+  CLEAR_CART,
+  CLEAR_ITEM_FROM_CART,
+  REMOVE_ITEM,
+  TOGGLE_CART_SHOWN
 } from "./cart.types";
 import {groupCartItems, removeItemFromCart} from "./cart.utils";
 
@@ -16,6 +20,12 @@ function cartReducer (state = INITIAL_STATE, action = {}) {
       return {
         ...state,
         cartItems: groupCartItems(state.cartItems, payload)
+      };
+
+    case CLEAR_CART:
+      return {
+        ...state,
+        cartItems: []
       };
 
     case CLEAR_ITEM_FROM_CART:
