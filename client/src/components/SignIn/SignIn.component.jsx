@@ -9,20 +9,20 @@ import styles from "./SignIn.module.scss";
 SignIn.propTypes = propTypes;
 
 function SignIn ({emailSignInStart, googleSignInStart}) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: ""
+  });
+
+  const {email, password} = credentials;
 
   const handleChange = (event) => {
     const {name, value} = event.target;
 
-    const isEmail = name === "email";
-    const isPassword = name === "password";
-
-    if (isEmail) {
-      setEmail(value);
-    } else if (isPassword) {
-      setPassword(value);
-    }
+    setCredentials({
+      ...credentials,
+      [name]: value
+    });
   };
 
   const handleSubmit = async (event) => {

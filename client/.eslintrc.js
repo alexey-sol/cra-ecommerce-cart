@@ -32,6 +32,6 @@ module.exports = {
     "quotes": [2, "double"],
     "max-len": ["error", { "code": 80 }],
     "object-curly-spacing": [2, "never"],
-    "semi": [2, "always", { "omitLastInOneLineBlock": true}]
+    "semi": [2, "always", { "omitLastInOneLineBlock": true }]
   }
 }
