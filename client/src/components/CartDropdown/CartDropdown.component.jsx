@@ -35,9 +35,9 @@ function CartDropdown ({cartItems, dispatch, history}) {
           </span>}
       </div>
 
-      <CustomButton onClick={doCheckout}>
+      {cartItems.length > 0 && <CustomButton onClick={doCheckout}>
         GO TO CHECKOUT
-      </CustomButton>
+      </CustomButton>}
     </div>
   );
 };
