@@ -20,6 +20,11 @@
   letter-spacing: 0.5px;
   cursor: pointer;
 
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.3;
+  }
+
   &:hover {
     border: 1px solid black;
     background-color: white;

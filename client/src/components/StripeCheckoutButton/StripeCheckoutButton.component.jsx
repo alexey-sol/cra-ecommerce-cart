@@ -23,7 +23,7 @@ function StripeCheckoutButton ({charge, payStart, error, price}) {
 
     if (error) {
       console.log("Payment error: ", error);
-
+// remove scrollbars in checkout list and empty space for Checkout now
       alert(
         "There was an issue with your payment. Please make sure you use " +
         "the provided credit card."
