@@ -1,6 +1,6 @@
 import React from "react";
+import Spinner from "components/Spinner";
 import {defaultProps, propTypes} from "./WithSpinner.validation";
-import styles from "./WithSpinner.module.scss";
 
 WithSpinner.defaultProps = defaultProps;
 WithSpinner.propTypes = propTypes;
@@ -8,9 +8,7 @@ WithSpinner.propTypes = propTypes;
 function WithSpinner (WrappedComponent) {
   return ({isLoading, ...rest}) => {
     const renderSpinnerOverlay = () => (
-      <div className={styles.overlay}>
-        <div className={styles.spinner} />
-      </div>
+      <Spinner />
     );
 
     const renderWrappedComponent = () => (

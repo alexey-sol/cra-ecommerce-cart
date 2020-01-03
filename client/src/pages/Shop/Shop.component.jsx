@@ -1,11 +1,15 @@
 import {Route} from "react-router-dom";
-import Collection from "pages/Collection";
-import CollectionsOverview from "components/CollectionsOverview";
-import React, {useEffect} from "react";
+import React, {Suspense, lazy, useEffect} from "react";
+import Spinner from "components/Spinner";
 import {connect} from "react-redux";
 import {propTypes} from "./Shop.validation";
 import {fetchCollectionsStart} from "redux/shop/shop.actions";
 import styles from "./Shop.module.scss";
+
+const CollectionsOverview =
+  lazy(() => import("components/CollectionsOverview"));
+const Collection =
+  lazy(() => import("pages/Collection"));
 
 Shop.propTypes = propTypes;
 
@@ -16,16 +20,18 @@ function Shop ({fetchCollectionsStart, match}) {
 
   return (
     <div className={styles.container}>
-      <Route
-        component={CollectionsOverview}
-        exact
-        path={match.path}
-      />
+      <Suspense fallback={<Spinner />}>
+        <Route
+          component={CollectionsOverview}
+          exact
+          path={match.path}
+        />
 
-      <Route
-        component={Collection}
-        path={`${match.path}/:collectionId`}
-      />
+        <Route
+          component={Collection}
+          path={`${match.path}/:collectionId`}
+        />
+      </Suspense>
     </div>
   );
 };
