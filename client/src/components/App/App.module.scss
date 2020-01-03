@@ -10,6 +10,10 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @media screen and (max-width: 800px) {
+    padding: 10px;
+  }
 }
 
 a {

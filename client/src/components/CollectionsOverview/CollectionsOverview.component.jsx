@@ -1,8 +1,8 @@
 import CollectionPreview from "components/CollectionPreview";
 import React from "react";
 import {connect} from "react-redux";
-import {defaultProps, propTypes} from "./CollectionsOverview.validation";
 import {createStructuredSelector} from "reselect";
+import {defaultProps, propTypes} from "./CollectionsOverview.validation";
 import {selectShopCollectionsForPreview} from "redux/shop/shop.selectors";
 import styles from "./CollectionsOverview.module.scss";
 

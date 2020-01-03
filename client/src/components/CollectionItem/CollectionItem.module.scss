@@ -20,6 +20,20 @@
       opacity: 0.85;
     }
   }
+
+  @media screen and (max-width: 800px) {
+    width: 40vw;
+
+    .image {
+      opacity: unset;
+    }
+
+    .addToCartButton {
+      display: block;
+      min-width: unset;
+      padding: 0 10px;
+    }
+  }
 }
 
 .image {
