@@ -1,8 +1,6 @@
 import CollectionItem from "components/CollectionItem";
 import React from "react";
-import {connect} from "react-redux";
-import {defaultProps, propTypes} from "./Collection.validation";
-import {selectShopCollection} from "redux/shop/shop.selectors";
+import {defaultProps, propTypes} from "./Collection.component.validation";
 import styles from "./Collection.module.scss";
 
 Collection.defaultProps = defaultProps;
@@ -31,16 +29,4 @@ function Collection ({collection}) {
   );
 };
 
-function mapStateToProps (state, ownProps) {
-  const {collectionId} = ownProps.match.params || {};
-
-  return {
-    collection: selectShopCollection(collectionId)(state)
-  };
-}
-
-const ConnectedCollection = connect(
-  mapStateToProps
-)(Collection);
-
-export default ConnectedCollection;
+export default Collection;

@@ -6,7 +6,6 @@ import React from "react";
 import {connect} from "react-redux";
 import {createStructuredSelector} from "reselect";
 import {propTypes} from "./Header.validation";
-import {selectCartIsShown} from "redux/cart/cart.selectors";
 import {selectUser} from "redux/auth/auth.selectors";
 import {signOutStart} from "redux/auth/auth.actions";
 import classnames from "classnames";
@@ -67,7 +66,6 @@ function Header ({cartIsShown, signOutStart, user}) {
 };
 
 const mapStateToProps = createStructuredSelector({
-  cartIsShown: selectCartIsShown,
   user: selectUser
 });
 

@@ -8,6 +8,6 @@ export const defaultProps = {
 
 export const propTypes = {
   cartItems: array,
-  dispatch: func.isRequired,
-  history: object.isRequired
+  history: object.isRequired,
+  toggleCartShown: func.isRequired
 };

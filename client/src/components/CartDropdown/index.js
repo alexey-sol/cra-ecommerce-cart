@@ -1,3 +1,3 @@
-import CartDropdown from "./CartDropdown.component";
+import CartDropdown from "./CartDropdown.container";
 
 export default CartDropdown;

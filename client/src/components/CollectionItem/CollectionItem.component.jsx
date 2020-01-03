@@ -1,7 +1,5 @@
 import CustomButton from "components/CustomButton";
 import React from "react";
-import {addItemToCart} from "redux/cart/cart.actions";
-import {connect} from "react-redux";
 import {defaultProps, propTypes} from "./CollectionItem.validation";
 import styles from "./CollectionItem.module.scss";
 
@@ -43,13 +41,4 @@ function CollectionItem ({addItemToCart, item}) {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  addItemToCart: (item) => dispatch(addItemToCart(item))
-});
-
-const ConnectedCollectionItem = connect(
-  null,
-  mapDispatchToProps
-)(CollectionItem);
-
-export default ConnectedCollectionItem;
+export default CollectionItem;
