@@ -1,4 +1,5 @@
 const bodyParser = require("body-parser");
+const compression = require("compression");
 const cors = require("cors");
 const express = require("express");
 const path = require("path");
@@ -17,6 +18,7 @@ const {
 
 const stripe = require("stripe")(STRIPE_SECRET_KEY);
 
+app.use(compression());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
