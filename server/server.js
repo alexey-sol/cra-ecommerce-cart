@@ -12,7 +12,7 @@ if (NODE_ENV !== "production") {
 }
 
 const {
-  PORT = 5000,
+  PORT = 8000,
   STRIPE_SECRET_KEY
 } = process.env;
 

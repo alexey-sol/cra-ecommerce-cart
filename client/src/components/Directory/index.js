@@ -1,3 +1,1 @@
-import Directory from "./Directory.component";
-
-export default Directory;
+export { default } from "./Directory.component";

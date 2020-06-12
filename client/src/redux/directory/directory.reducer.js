@@ -1,16 +1,16 @@
 import SECTIONS from "./directory.data";
 
 const INITIAL_STATE = {
-  sections: SECTIONS
+    sections: SECTIONS
 };
 
 function directoryReducer (state = INITIAL_STATE, action = {}) {
-  const {type} = action;
+    const { type } = action;
 
-  switch (type) {
-    default:
-      return state;
-  }
+    switch (type) {
+        default:
+            return state;
+    }
 }
 
 export default directoryReducer;

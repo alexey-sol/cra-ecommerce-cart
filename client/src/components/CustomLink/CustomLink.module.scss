@@ -1,0 +1,15 @@
+@import "styles/style.scss";
+
+.container {
+    a {
+        border-bottom: 1px solid $custom-link-border-color;
+        padding: 0 0.1rem;
+        color: $custom-link-text-color;
+        transition: .1s ease;
+
+        &:hover {
+            border-bottom: 1px solid $custom-link-border-color--hover;
+            color: $custom-link-text-color--hover;
+        }
+    }
+}

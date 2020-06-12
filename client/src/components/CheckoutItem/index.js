@@ -1,3 +1,1 @@
-import CheckoutItem from "./CheckoutItem.component";
-
-export default CheckoutItem;
+export { default } from "./CheckoutItem.component";

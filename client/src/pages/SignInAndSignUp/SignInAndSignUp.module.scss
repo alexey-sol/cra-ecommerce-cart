@@ -1,6 +1,8 @@
 .container {
-  display: flex;
-  justify-content: space-between;
-  width: 850px;
-  margin: 30px auto;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+    width: 85rem;
+    min-width: 30rem;
+    margin: 3rem auto;
 }

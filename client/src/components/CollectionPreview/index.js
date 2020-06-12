@@ -1,3 +1,1 @@
-import CollectionPreview from "./CollectionPreview.component";
-
-export default CollectionPreview;
+export { default } from "./CollectionPreview.component";

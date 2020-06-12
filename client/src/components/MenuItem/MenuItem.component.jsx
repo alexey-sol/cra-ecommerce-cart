@@ -1,43 +1,51 @@
 import React from "react";
-import {defaultProps, propTypes} from "./MenuItem.validation";
-import {withRouter} from "react-router-dom";
 import classnames from "classnames";
+
+import { defaultProps, propTypes } from "./MenuItem.props";
+import { withRouter } from "react-router-dom";
 import styles from "./MenuItem.module.scss";
 
 MenuItem.defaultProps = defaultProps;
 MenuItem.propTypes = propTypes;
 
-function MenuItem ({imageUrl, history, linkUrl, match, size, title}) {
-  const containerClassNames = classnames(
-    styles.container,
-    styles[size]
-  );
+function MenuItem ({
+    imageUrl,
+    history,
+    linkUrl,
+    match,
+    size,
+    title
+}) {
+    const containerClassNames = classnames(
+        styles.container,
+        styles[size]
+    );
 
-  const backgroundImageStyle = {
-    backgroundImage: `url(${imageUrl})`
-  };
+    const backgroundImageStyle = {
+        backgroundImage: `url(${imageUrl})`
+    };
 
-  return (
-    <div
-      className={containerClassNames}
-      onClick={() => history.push(`${match.url}${linkUrl}`)}
-    >
-      <div
-        className={styles.backgroundImage}
-        style={backgroundImageStyle}
-      />
+    return (
+        <section
+            className={containerClassNames}
+            onClick={() => history.push(`${match.url}${linkUrl}`)}
+        >
+            <section
+                className={styles.backgroundImage}
+                style={backgroundImageStyle}
+            />
 
-      <div className={styles.content}>
-        <h1 className={styles.title}>
-          {title.toUpperCase()}
-        </h1>
+            <section className={styles.content}>
+                <h1 className={styles.title}>
+                    {title.toUpperCase()}
+                </h1>
 
-        <span className={styles.subTitle}>
-          SHOP NOW
-        </span>
-      </div>
-    </div>
-  );
-};
+                <span className={styles.subTitle}>
+                    TAKE A LOOK
+                </span>
+            </section>
+        </section>
+    );
+}
 
 export default withRouter(MenuItem);

@@ -1,70 +1,70 @@
 @import "styles/style.scss";
 
 .container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 22vw;
-  height: 350px;
-  padding: 0;
-  margin: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 22vw;
+    height: 35rem;
+    padding: 0;
+    margin: 0;
 
-  &:hover {
-    .image {
-      opacity: 0.8;
+    &:hover {
+        .image {
+            opacity: 0.8;
+        }
+
+        .addToCartButton {
+            display: flex;
+            opacity: 0.85;
+        }
     }
-
-    .addToCartButton {
-      display: flex;
-      opacity: 0.85;
-    }
-  }
-
-  @media screen and (max-width: 800px) {
-    width: 40vw;
 
     .image {
-      opacity: unset;
+        width: 100%;
+        height: 95%;
+        margin-bottom: 0.5rem;
+        background-size: cover;
+        background-position: center;
     }
-
+    
+    .collectionFooter {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 5%;
+        font-size: $font-size--medium;
+      
+        .name {
+            width: 90%;
+            margin-bottom: 1.5rem;
+        }
+      
+        .price {
+            width: 10%;
+        }
+    }
+    
     .addToCartButton {
-      display: block;
-      min-width: unset;
-      padding: 0 10px;
+        position: absolute;
+        top: 25.5rem;
+        display: none;
+        opacity: 0.7;
+        width: 80%;
     }
-  }
-}
 
-.image {
-  width: 100%;
-  height: 95%;
-  margin-bottom: 5px;
-  background-size: cover;
-  background-position: center;
-}
+    @media screen and (max-width: 800px) {
+        width: 40vw;
 
-.collectionFooter {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 5%;
-  font-size: $font-size--medium;
+        .image {
+            opacity: unset;
+        }
 
-  .name {
-    width: 90%;
-    margin-bottom: 15px;
-  }
-
-  .price {
-    width: 10%;
-  }
-}
-
-.addToCartButton {
-  position: absolute;
-  top: 255px;
-  display: none;
-  opacity: 0.7;
-  width: 80%;
+        .addToCartButton {
+            display: block;
+            min-width: unset;
+            padding: 0 1rem;
+        }
+    }
 }

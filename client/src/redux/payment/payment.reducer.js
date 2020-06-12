@@ -1,33 +1,33 @@
 import {
-  PAY_FAILURE,
-  PAY_SUCCESS
+    PAY_FAILURE,
+    PAY_SUCCESS
 } from "./payment.types";
 
 const INITIAL_STATE = {
-  charge: null,
-  error: null
+    charge: null,
+    error: null
 };
 
 function paymentReducer (state = INITIAL_STATE, action = {}) {
-  const {payload, type} = action;
+    const { payload, type } = action;
 
-  switch (type) {
-    case PAY_FAILURE:
-      return {
-        ...state,
-        error: payload
-      };
+    switch (type) {
+        case PAY_FAILURE:
+            return {
+                ...state,
+                error: payload
+            };
 
-    case PAY_SUCCESS:
-      return {
-        ...state,
-        charge: payload,
-        error: null
-      };
+        case PAY_SUCCESS:
+            return {
+                ...state,
+                charge: payload,
+                error: null
+            };
 
-    default:
-      return state;
-  }
+        default:
+            return state;
+    }
 }
 
 export default paymentReducer;

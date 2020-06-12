@@ -1,55 +1,62 @@
-import CustomButton from "components/CustomButton";
-import React from "react";
-import {addItemToCart} from "redux/cart/cart.actions";
-import {connect} from "react-redux";
-import {defaultProps, propTypes} from "./CollectionItem.validation";
+import React, { useCallback } from "react";
+import { connect } from "react-redux";
+
+import BaseButton from "components/BaseButton";
+import { addItemToCart } from "redux/cart/cart.actions";
+import { defaultProps, propTypes } from "./CollectionItem.props";
 import styles from "./CollectionItem.module.scss";
 
 CollectionItem.defaultProps = defaultProps;
 CollectionItem.propTypes = propTypes;
 
-function CollectionItem ({addItemToCart, item}) {
-  const {imageUrl, name, price} = item;
+function CollectionItem ({ onAddItemToCart, item }) {
+    const {
+        imageUrl,
+        name,
+        price
+    } = item;
 
-  const backgroundImageStyle = {
-    backgroundImage: `url(${imageUrl})`
-  };
+    const backgroundImageStyle = {
+        backgroundImage: `url(${imageUrl})`
+    };
 
-  return (
-    <li className={styles.container}>
-      <div
-        className={styles.image}
-        style={backgroundImageStyle}
-      />
+    const handleClick = useCallback(() => onAddItemToCart(item), [item, onAddItemToCart]);
 
-      <div className={styles.collectionFooter}>
-        <span className={styles.name}>
-          {name}
-        </span>
+    return (
+        <li className={styles.container}>
+            <section
+                className={styles.image}
+                style={backgroundImageStyle}
+            />
 
-        <span className={styles.price}>
-          {price}
-        </span>
-      </div>
+            <section className={styles.collectionFooter}>
+                <span className={styles.name}>
+                    {name}
+                </span>
 
-      <CustomButton
-        className={styles.addToCartButton}
-        isInverted
-        onClick={() => addItemToCart(item)}
-      >
-        Add to cart
-      </CustomButton>
-    </li>
-  );
-};
+                <span className={styles.price}>
+                    {price}
+                </span>
+            </section>
+
+            <BaseButton
+                className={styles.addToCartButton}
+                isInverted
+                onClick={handleClick}
+            >
+                Add to cart
+            </BaseButton>
+        </li>
+    );
+}
 
 const mapDispatchToProps = (dispatch) => ({
-  addItemToCart: (item) => dispatch(addItemToCart(item))
+    onAddItemToCart: (item) => dispatch(addItemToCart(item))
 });
 
 const ConnectedCollectionItem = connect(
-  null,
-  mapDispatchToProps
+    null,
+    mapDispatchToProps
 )(CollectionItem);
 
 export default ConnectedCollectionItem;

@@ -1,31 +1,31 @@
 @import "styles/style.scss";
 
 .container {
-  position: absolute;
-  z-index: 5;
-  top: 90px;
-  right: 40px;
-  display: flex;
-  flex-direction: column;
-  width: 240px;
-  height: 340px;
-  padding: 20px;
-  border: 1px solid black;
-  background-color: white;
-}
+    position: absolute;
+    z-index: 5;
+    top: 9rem;
+    right: 4rem;
+    display: flex;
+    flex-direction: column;
+    width: 24rem;
+    height: 34rem;
+    padding: 2rem;
+    border: 1px solid black;
+    background-color: white;
 
-.cartItems {
-  overflow: auto;
-  display: flex;
-  flex-direction: column;
-  height: 240px;
-}
-
-.emptyCartMessage {
-  margin: 50px auto;
-  font-size: $font-size--medium;
-}
-
-button {
-  margin-top: auto;
+    .cartItems {
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        height: 24rem;
+    }
+    
+    .emptyCartMessage {
+        margin: 5rem auto;
+        font-size: $font-size--medium;
+    }
+    
+    button {
+        margin-top: auto;
+    }
 }

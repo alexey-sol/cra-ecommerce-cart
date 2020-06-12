@@ -1,3 +1,1 @@
-import StripeCheckoutButton from "./StripeCheckoutButton.component";
-
-export default StripeCheckoutButton;
+export { default } from "./StripeCheckoutButton.component";

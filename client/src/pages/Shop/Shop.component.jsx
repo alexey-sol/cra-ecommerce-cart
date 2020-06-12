@@ -1,48 +1,47 @@
-import {Route} from "react-router-dom";
-import React, {Suspense, lazy, useEffect} from "react";
+import { Route } from "react-router-dom";
+import React, { Suspense, lazy, useEffect } from "react";
+import { connect } from "react-redux";
+
 import Spinner from "components/Spinner";
-import {connect} from "react-redux";
-import {propTypes} from "./Shop.validation";
-import {fetchCollectionsStart} from "redux/shop/shop.actions";
+import { propTypes } from "./Shop.props";
+import { fetchCollectionsStart } from "redux/shop/shop.actions";
 import styles from "./Shop.module.scss";
 
-const CollectionsOverview =
-  lazy(() => import("components/CollectionsOverview"));
-const Collection =
-  lazy(() => import("pages/Collection"));
+const CollectionsOverview = lazy(() => import("components/CollectionsOverview"));
+const Collection = lazy(() => import("pages/Collection"));
 
 Shop.propTypes = propTypes;
 
-function Shop ({fetchCollectionsStart, match}) {
-  useEffect(() => {
-    fetchCollectionsStart();
-  }, [fetchCollectionsStart]);
+function Shop ({ onFetchCollectionsStart, match }) {
+    useEffect(() => {
+        onFetchCollectionsStart();
+    }, [onFetchCollectionsStart]);
 
-  return (
-    <div className={styles.container}>
-      <Suspense fallback={<Spinner />}>
-        <Route
-          component={CollectionsOverview}
-          exact
-          path={match.path}
-        />
+    return (
+        <section className={styles.container}>
+            <Suspense fallback={<Spinner />}>
+                <Route
+                    component={CollectionsOverview}
+                    exact
+                    path={match.path}
+                />
 
-        <Route
-          component={Collection}
-          path={`${match.path}/:collectionId`}
-        />
-      </Suspense>
-    </div>
-  );
-};
+                <Route
+                    component={Collection}
+                    path={`${match.path}/:collectionId`}
+                />
+            </Suspense>
+        </section>
+    ); // TODO: fix ":collectionId" in path
+}
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
+    onFetchCollectionsStart: () => dispatch(fetchCollectionsStart())
 });
 
 const ConnectedShop = connect(
-  null,
-  mapDispatchToProps
+    null,
+    mapDispatchToProps
 )(Shop);
 
 export default ConnectedShop;

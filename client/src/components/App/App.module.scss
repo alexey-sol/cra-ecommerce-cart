@@ -1,26 +1,37 @@
 @import "styles/style.scss";
 
 html {
-  font-family: $font-family--normal;
-  font-size: 10px;
+    font-size: 10px;
 }
 
 body {
-  padding: 20px 60px;
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    padding: 2rem 6rem;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: $font-family--normal;
+    font-size: $font-size--medium;
+    color: $text-color--normal;
+    overflow-y: scroll;
 
-  @media screen and (max-width: 800px) {
-    padding: 10px;
-  }
-}
+    &::-webkit-scrollbar {
+        width: 1rem;
+    }
 
-a {
-  color: black;
-  text-decoration: none;
-}
+    &::-webkit-scrollbar-track {
+        background-color: $scrollbar-track-color;
+    }
 
-* {
-  box-sizing: border-box;
+    &::-webkit-scrollbar-thumb {
+        background-color: $scrollbar-thumb-color;
+    }
+
+    a {
+        color: $text-color--normal;
+        text-decoration: none;
+    }
+
+    @media screen and (max-width: 800px) {
+      padding: 1rem;
+    }
 }

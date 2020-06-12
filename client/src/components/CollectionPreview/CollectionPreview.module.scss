@@ -1,37 +1,38 @@
 @import "styles/style.scss";
 
 .container {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0 0 30px 0;
-
-  @media screen and (max-width: 800px) {
-    align-items: center;
-  }
-}
-
-.title {
-  margin-bottom: 25px;
-  font-size: $font-size--larger;
-}
-
-.preview {
-  display: flex;
-  justify-content: space-between;
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-
-  @media screen and (max-width: 800px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 15px;
-  }
-
-  .item {
+    display: flex;
+    flex-direction: column;
     padding: 0;
-    margin: 0;
-    font-size: $font-size--small;
-  }
+    margin: 0 0 3rem 0;
+
+    .title {
+        margin-bottom: 2.5rem;
+        font-size: $font-size--larger;
+    }
+
+    .preview {
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+
+        @media screen and (max-width: 800px) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 1.5rem;
+        }
+
+        .item {
+            padding: 0;
+            margin: 0;
+            font-size: $font-size--small;
+        }
+    }
+
+
+    @media screen and (max-width: 800px) {
+        align-items: center;
+    }
 }

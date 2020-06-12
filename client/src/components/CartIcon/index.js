@@ -1,3 +1,1 @@
-import CartIcon from "./CartIcon.component";
-
-export default CartIcon;
+export { default } from "./CartIcon.component";

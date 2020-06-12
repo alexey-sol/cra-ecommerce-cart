@@ -1,80 +1,84 @@
-import {Redirect, Route, Switch} from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
+import React, { Suspense, lazy, useEffect } from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
 import ErrorBoundary from "components/ErrorBoundary";
 import Header from "components/Header";
-import React, {Suspense, lazy, useEffect} from "react";
 import Spinner from "components/Spinner";
-import {checkUserSession} from "redux/auth/auth.actions";
-import {connect} from "react-redux";
-import {createStructuredSelector} from "reselect";
-import {propTypes} from "./App.validation";
-import {selectUser} from "redux/auth/auth.selectors";
+import { checkSession } from "redux/auth/auth.actions";
+import { propTypes } from "./App.props";
+import { selectUser } from "redux/auth/auth.selectors";
 import styles from "./App.module.scss";
 
 const Checkout = lazy(() => import("pages/Checkout"));
 const Home = lazy(() => import("pages/Home"));
+const Page404 = lazy(() => import("pages/Page404"));
 const Shop = lazy(() => import("pages/Shop"));
 const SignInAndSignUp = lazy(() => import("pages/SignInAndSignUp"));
 
 App.propTypes = propTypes;
 
-function App ({checkUserSession, user}) {
-  const renderSignIn = () => (
-    (user)
-      ? <Redirect to="/" />
-      : <SignInAndSignUp />
-  );
+function App ({ onCheckSession, user }) {
+    const renderSignIn = () => ((user)
+        ? <Redirect to="/" />
+        : <SignInAndSignUp />
+    );
 
-  useEffect(() => {
-    checkUserSession();
-  }, [checkUserSession]);
+    useEffect(() => {
+        onCheckSession();
+    }, [onCheckSession]);
 
-  return (
-    <div className={styles.container}>
-      <Header />
+    return (
+        <section className={styles.container}>
+            <Header />
+            <ErrorBoundary>
+                <Suspense fallback={<Spinner />}>
+                    <Switch>
+                        <Route
+                            component={Home}
+                            exact
+                            path="/"
+                        />
 
-      <Switch>
-        <ErrorBoundary>
-          <Suspense fallback={<Spinner />}>
-            <Route
-              component={Home}
-              exact
-              path="/"
-            />
+                        <Route
+                            component={Shop}
+                            path="/shop"
+                        />
 
-            <Route
-              component={Shop}
-              path="/shop"
-            />
+                        <Route
+                            component={Checkout}
+                            exact
+                            path="/checkout"
+                        />
 
-            <Route
-              component={Checkout}
-              exact
-              path="/checkout"
-            />
+                        <Route
+                            exact
+                            path="/sign-in"
+                            render={renderSignIn}
+                        />
 
-            <Route
-              exact
-              path="/sign-in"
-              render={renderSignIn}
-            />
-          </Suspense>
-        </ErrorBoundary>
-      </Switch>
-    </div>
-  );
+                        <Route
+                            component={Page404}
+                        />
+                    </Switch>
+                </Suspense>
+            </ErrorBoundary>
+        </section>
+    );
 }
 
 const mapStateToProps = createStructuredSelector({
-  user: selectUser
+    user: selectUser
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  checkUserSession: () => dispatch(checkUserSession())
+    onCheckSession: () => dispatch(checkSession())
 });
 
 const ConnectedApp = connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(App);
 
 export default ConnectedApp;

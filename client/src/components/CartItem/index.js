@@ -1,3 +1,1 @@
-import CartItem from "./CartItem.component";
-
-export default CartItem;
+export { default } from "./CartItem.component";

@@ -1,12 +1,12 @@
-import {createSelector} from "reselect";
+import { createSelector } from "reselect";
 
-function selectAuth ({auth}) {
-  return auth;
+function selectAuth ({ auth }) {
+    return auth;
 }
 
 export const selectUser = createSelector(
-  [selectAuth],
-  ({user}) => user
+    [selectAuth],
+    ({ user }) => user
 );
 
 export default selectUser;

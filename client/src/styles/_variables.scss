@@ -15,3 +15,37 @@ $gray: #bcbcbc;
 $gray--light: #e1e1e1;
 $gray--lighten: #efeeea;
 $gray--lightest: #fcfafa;
+
+$color-primary: #000;
+$color-secondary: #fff;
+$color-tertiary: #4285f4;
+
+$error-color: red;
+
+$text-color--normal: $color-primary;
+
+$button-bg-color: $color-primary;
+$button-bg-color--hover: $color-secondary;
+$button-text-color: $color-secondary;
+$button-text-color--hover: $color-primary;
+
+$button-google-bg-color: $color-tertiary;
+$button-google-bg-color--hover: #357ae8;
+$button-google-text-color: $color-secondary;
+$button-google-text-color--hover: $color-secondary;
+
+$custom-link-border-color: $color-tertiary;
+$custom-link-border-color--hover: #76abff;
+$custom-link-text-color: $color-tertiary;
+$custom-link-text-color--hover: #76abff;
+
+$input-text-color: $gray--darken;
+
+$menu-item-bg-color: $color-secondary;
+$menu-item-border-color: $color-primary;
+$menu-item-text-color: #4a4a4a;
+
+$navbar-option-bg-color: $color-secondary;
+
+$scrollbar-thumb-color: $gray;
+$scrollbar-track-color: $color-secondary;

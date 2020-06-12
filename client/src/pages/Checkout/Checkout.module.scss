@@ -1,46 +1,48 @@
 @import "styles/style.scss";
 
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 55%;
-  min-height: 90vh;
-  margin: 50px auto 0;
-}
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    width: 55%;
+    min-width: 30rem;
+    min-height: 90vh;
+    margin: 5rem auto 0;
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px 0;
-  border-bottom: 1px solid darkgrey;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 1rem 0;
+      border-bottom: 0.1rem solid $gray--dark;
 
-  .headerBlock {
-    width: 23%;
-    font-size: $font-size--small;
-    text-transform: capitalize;
-
-    &:last-child {
-      width: 8%;
+      .headerBlock {
+        width: 23%;
+        font-size: $font-size--small;
+        text-transform: capitalize;
+    
+        &:last-child {
+          width: 8%;
+        }
+      }
     }
-  }
-}
 
-.total {
-  margin-top: 30px;
-  margin-left: auto;
-  font-size: $font-size--largest;
-}
+    .total {
+      margin-top: 3rem;
+      margin-left: auto;
+      font-size: $font-size--largest;
+    }
 
-.stripeCheckoutButton {
-  margin-top: 50px;
-  margin-left: auto;
-}
+    .stripeCheckoutButton {
+      margin-top: 5rem;
+      margin-left: auto;
+    }
 
-.testWarning {
-  margin-top: 40px;
-  color: red;
-  font-size: $font-size--larger;
-  text-align: center;
+    .testWarning {
+      margin-top: 4rem;
+      color: $error-color;
+      font-size: $font-size--larger;
+      text-align: center;
+    }
 }

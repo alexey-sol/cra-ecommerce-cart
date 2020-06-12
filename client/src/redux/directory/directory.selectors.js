@@ -1,10 +1,10 @@
-import {createSelector} from "reselect";
+import { createSelector } from "reselect";
 
-function selectDirectory ({directory}) {
-  return directory;
+function selectDirectory ({ directory }) {
+    return directory;
 }
 
 export const selectDirectorySections = createSelector(
-  [selectDirectory],
-  ({sections}) => sections
+    [selectDirectory],
+    ({ sections }) => sections
 );

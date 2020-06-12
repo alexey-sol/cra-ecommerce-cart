@@ -1,3 +1,1 @@
-import CollectionItem from "./CollectionItem.component";
-
-export default CollectionItem;
+export { default } from "./CollectionItem.component";

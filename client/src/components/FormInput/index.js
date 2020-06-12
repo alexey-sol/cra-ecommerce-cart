@@ -1,3 +1,1 @@
-import FormInput from "./FormInput.component";
-
-export default FormInput;
+export { default } from "./FormInput.component";

@@ -1,3 +1,1 @@
-import SignInAndSignUp from "./SignInAndSignUp.component";
-
-export default SignInAndSignUp;
+export { default } from "./SignInAndSignUp.component";

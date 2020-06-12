@@ -1,9 +1,3 @@
-const PAY_FAILURE = "PAY_FAILURE";
-const PAY_START = "PAY_START";
-const PAY_SUCCESS = "PAY_SUCCESS";
-
-export {
-  PAY_FAILURE,
-  PAY_START,
-  PAY_SUCCESS
-};
+export const PAY_FAILURE = "PAY_FAILURE";
+export const PAY_START = "PAY_START";
+export const PAY_SUCCESS = "PAY_SUCCESS";

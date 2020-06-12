@@ -1,35 +1,45 @@
-import CollectionPreview from "components/CollectionPreview";
 import React from "react";
-import {connect} from "react-redux";
-import {createStructuredSelector} from "reselect";
-import {defaultProps, propTypes} from "./CollectionsOverview.validation";
-import {selectShopCollectionsForPreview} from "redux/shop/shop.selectors";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import CollectionPreview from "components/CollectionPreview";
+import WithSpinner from "components/WithSpinner";
+import { defaultProps, propTypes } from "./CollectionsOverview.props";
+
+import {
+    selectIsCollectionFetching,
+    selectShopCollectionsForPreview
+} from "redux/shop/shop.selectors";
+
 import styles from "./CollectionsOverview.module.scss";
 
 CollectionsOverview.defaultProps = defaultProps;
 CollectionsOverview.propTypes = propTypes;
 
-function CollectionsOverview ({collections}) {
-  const collectionElements = collections.map(({id, ...rest}) => (
-    <CollectionPreview
-      key={id}
-      {...rest}
-    />
-  ));
+function CollectionsOverview ({ collections }) {
+    const collectionElements = collections.map(({ id, ...rest }) => (
+        <CollectionPreview
+            key={id}
+            {...rest}
+        />
+    ));
 
-  return (
-    <div className={styles.container}>
-      {collectionElements}
-    </div>
-  );
+    return (
+        <section className={styles.container}>
+            {collectionElements}
+        </section>
+    );
 }
 
 const mapStateToProps = createStructuredSelector({
-  collections: selectShopCollectionsForPreview
+    collections: selectShopCollectionsForPreview,
+    isLoading: selectIsCollectionFetching
 });
 
-const ConnectedCollectionsOverview = connect(
-  mapStateToProps
+const ConnectedCollectionsOverview = compose(
+    connect(mapStateToProps),
+    WithSpinner
 )(CollectionsOverview);
 
 export default ConnectedCollectionsOverview;

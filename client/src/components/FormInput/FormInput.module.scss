@@ -1,56 +1,53 @@
 @import "styles/style.scss";
 
-$main-color: black;
-$sub-color: grey;
-
 @mixin shrinkLabel {
-  top: -14px;
-  color: $main-color;
-  font-size: $font-size--smaller;
+    top: -1.4rem;
+    color: $text-color--normal;
+    font-size: $font-size--smaller;
 }
 
 .container {
-  position: relative;
-  margin: 45px 0;
-}
+    position: relative;
+    margin: 4.5rem 0;
 
-.formInput {
-  display: block;
-  width: 100%;
-  padding: 10px 10px 10px 5px;
-  border: none;
-  border-bottom: 1px solid $sub-color;
-  border-radius: 0;
-  margin: 25px 0;
-  background: none;
-  background-color: white;
-  color: $sub-color;
-  font-size: $font-size--medium;
+    .formInput {
+        display: block;
+        width: 100%;
+        padding: 1rem 1rem 1rem 0.5rem;
+        border: none;
+        border-bottom: 0.1rem solid $input-text-color;
+        border-radius: 0;
+        margin: 2.5rem 0;
+        background: none;
+        background-color: white;
+        color: $input-text-color;
+        font-size: $font-size--medium;
+      
+        &:focus {
+            outline: none;
+        }
 
-  &:focus {
-    outline: none;
-  }
+        &:focus ~ .label {
+            @include shrinkLabel();
+        }
+    }
 
-  &:focus ~ .label {
-    @include shrinkLabel();
-  }
-}
+    input[type="password"] {
+        letter-spacing: 0.3em;
+    }
 
-input[type="password"] {
-  letter-spacing: 0.3em;
-}
-
-.label {
-  position: absolute;
-  top: 10px;
-  left: 5px;
-  pointer-events: none;
-  color: $sub-color;
-  font-size: $font-size--small;
-  font-weight: normal;
-  transition: 300ms ease all;
-
-  &.shrink {
-    @include shrinkLabel();
-  }
+    .label {
+        position: absolute;
+        top: 1rem;
+        left: 0.5rem;
+        pointer-events: none;
+        color: $input-text-color;
+        font-size: $font-size--small;
+        font-weight: normal;
+        transition: 300ms ease all;
+      
+        &.shrink {
+            @include shrinkLabel();
+        }
+    }
 }

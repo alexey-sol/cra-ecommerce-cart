@@ -1,3 +1,1 @@
-import Shop from "./Shop.component";
-
-export default Shop;
+export { default } from "./Shop.component";

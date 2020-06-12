@@ -1,24 +1,25 @@
 @import "styles/style.scss";
 
 .container {
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  width: 45px;
-  height: 45px;
-  cursor: pointer;
-}
+    position: relative;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 4.5rem;
+    height: 100%;
+    cursor: pointer;
 
-.shoppingIcon {
-  width: 24px;
-  height: 24px;
-}
-
-.itemCount {
-  position: absolute;
-  bottom: 12px;
-  user-select: none;
-  font-size: $font-size--smallest;
-  font-weight: bold;
+    .shoppingIcon {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+    
+    .itemCount {
+        position: absolute;
+        margin-top: 0.3rem;
+        user-select: none;
+        font-size: $font-size--smallest;
+        font-weight: bold;
+    }
 }

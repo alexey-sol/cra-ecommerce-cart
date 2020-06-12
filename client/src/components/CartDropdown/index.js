@@ -1,3 +1,1 @@
-import CartDropdown from "./CartDropdown.component";
-
-export default CartDropdown;
+export { default } from "./CartDropdown.component";

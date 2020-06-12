@@ -1,0 +1,10 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+    text-align: center;
+
+    .header {
+        font-weight: 600;
+    }
+}

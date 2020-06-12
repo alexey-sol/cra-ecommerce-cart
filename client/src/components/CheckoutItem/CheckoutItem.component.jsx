@@ -1,74 +1,88 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import {
-  addItemToCart, clearItemFromCart, removeItem
+    addItemToCart,
+    clearItemFromCart,
+    removeItem
 } from "redux/cart/cart.actions";
-import {connect} from "react-redux";
-import {defaultProps, propTypes} from "./CheckoutItem.validation";
+
+import { defaultProps, propTypes } from "./CheckoutItem.props";
 import styles from "./CheckoutItem.module.scss";
 
 CheckoutItem.defaultProps = defaultProps;
 CheckoutItem.propTypes = propTypes;
 
-function CheckoutItem ({addItem, cartItem, clearItem, removeItem}) {
-  const {imageUrl, name, price, quantity} = cartItem;
+function CheckoutItem ({
+    cartItem,
+    onAddItem,
+    onClearItem,
+    onRemoveItem
+}) {
+    const {
+        imageUrl,
+        name,
+        price,
+        quantity
+    } = cartItem;
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.imageContainer}>
-        <img
-          alt="item"
-          className={styles.image}
-          src={imageUrl}
-        />
-      </div>
+    return (
+        <section className={styles.container}>
+            <section className={styles.imageContainer}>
+                <img
+                    alt="item"
+                    className={styles.image}
+                    src={imageUrl}
+                />
+            </section>
 
-      <span className={styles.name}>
-        {name}
-      </span>
+            <span className={styles.name}>
+                {name}
+            </span>
 
-      <span className={styles.quantity}>
-        <div
-          className={styles.arrow}
-          onClick={() => removeItem(cartItem)}
-        >
-          &#10094;
-        </div>
+            <span className={styles.quantity}>
+                <div
+                    className={styles.arrow}
+                    onClick={() => onRemoveItem(cartItem)}
+                >
+                    &#10094;
+                </div>
 
-        <span className={styles.value}>
-          {quantity}
-        </span>
+                <span className={styles.value}>
+                    {quantity}
+                </span>
 
-        <div
-          className={styles.arrow}
-          onClick={() => addItem(cartItem)}
-        >
-          &#10095;
-        </div>
-      </span>
+                <div
+                    className={styles.arrow}
+                    onClick={() => onAddItem(cartItem)}
+                >
+                    &#10095;
+                </div>
+            </span>
 
-      <span className={styles.price}>
-        {price}
-      </span>
+            <span className={styles.price}>
+                {price}
+            </span>
 
-      <div
-        className={styles.removeButton}
-        onClick={() => clearItem(cartItem)}
-      >
-        &#10005;
-      </div>
-    </div>
-  );
-};
+            <div
+                className={styles.removeButton}
+                onClick={() => onClearItem(cartItem)}
+            >
+                &#10005;
+            </div>
+        </section>
+    );
+}
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (item) => dispatch(addItemToCart(item)),
-  clearItem: (item) => dispatch(clearItemFromCart(item)),
-  removeItem: (item) => dispatch(removeItem(item))
+    onAddItem: (item) => dispatch(addItemToCart(item)),
+    onClearItem: (item) => dispatch(clearItemFromCart(item)),
+    onRemoveItem: (item) => dispatch(removeItem(item))
 });
 
 const ConnectedCheckoutItem = connect(
-  null,
-  mapDispatchToProps
+    null,
+    mapDispatchToProps
 )(CheckoutItem);
 
 export default ConnectedCheckoutItem;

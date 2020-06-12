@@ -1,3 +1,1 @@
-import WithSpinner from "./WithSpinner.component";
-
-export default WithSpinner;
+export { default } from "./WithSpinner.component";

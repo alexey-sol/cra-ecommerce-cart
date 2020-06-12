@@ -1,20 +1,15 @@
-import {createSelector} from "reselect";
+import { createSelector } from "reselect";
 
-function selectPayment ({payment}) {
-  return payment;
+function selectPayment ({ payment }) {
+    return payment;
 }
 
-const selectCharge = createSelector(
-  [selectPayment],
-  ({charge}) => charge
+export const selectCharge = createSelector(
+    [selectPayment],
+    ({ charge }) => charge
 );
 
-const selectError = createSelector(
-  [selectPayment],
-  ({error}) => error
+export const selectError = createSelector(
+    [selectPayment],
+    ({ error }) => error
 );
-
-export {
-  selectCharge,
-  selectError
-};
