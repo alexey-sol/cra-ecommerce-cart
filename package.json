@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "client": "cd client && npm start",
-    "server": "npx nodemon server/server.js",
+    "dev-client": "cd client && npm start",
+    "dev-server": "cd server && npm run dev",
+    "dev": "npx concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run dev-client\"",
     "build": "cd client && npm run build",
-    "dev": "set NODE_ENV=development && npx concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "start": "node server/server.js",
-    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
-    "test-client": "cd client && npm run test"
+    "start": "npx pm2 start server/src/index.js",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   }
 }

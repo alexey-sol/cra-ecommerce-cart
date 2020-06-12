@@ -15,10 +15,10 @@ export function * pay ({ payload = {} }) {
         const response = yield axios({
             data: payload,
             method: "post",
-            url: "payment"
+            url: "api/v1/payment"
         });
 
-        const charge = response.data && response.data.success;
+        const charge = response.data && response.data.success; // TODO: changed response, so won't work
         yield put(paySuccess(charge));
     } catch (error) {
         yield put(payFailure(error));

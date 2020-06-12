@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "es2018",
+        "allowSyntheticDefaultImports": false,
+        "baseUrl": "./",
+        "paths": {
+            "@api/*": ["./src/api/*"],
+            "@config/*": ["./src/config/*"],
+            "@loaders": ["./src/loaders"],
+            "@logger": ["./src/loaders/logger"],
+            "@root/*": ["./*"],
+            "@services/*": ["./src/services/*"],
+            "@utils/*": ["./src/utils/*"]
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

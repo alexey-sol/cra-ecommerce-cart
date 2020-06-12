@@ -2,18 +2,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 
-const config = { // TODO: env
-    apiKey: "AIzaSyBeM7jh--3LTCuXUnVR6F3-I61EYFgoVW0",
-    appId: "1:480412026660:web:ae9100d07d85613543d5b1",
-    authDomain: "react-clothing-store-257318.firebaseapp.com",
-    databaseURL: "https://react-clothing-store-257318.firebaseio.com",
-    measurementId: "G-EC7X6GBKPS",
-    messagingSenderId: "480412026660",
-    projectId: "react-clothing-store-257318",
-    storageBucket: "react-clothing-store-257318.appspot.com"
-};
-
-firebase.initializeApp(config);
+firebase.initializeApp(getConfig(process.env));
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
@@ -88,6 +77,19 @@ export function getCurrentUser () {
             resolve(userAuth);
         }, reject);
     });
+}
+
+function getConfig (env) {
+    return {
+        apiKey: env.REACT_APP_FIREBASE_API_KEY,
+        appId: env.REACT_APP_FIREBASE_APP_ID,
+        authDomain: env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+        databaseURL: env.REACT_APP_FIREBASE_DATABASE_URL,
+        measurementId: env.REACT_APP_FIREBASE_MEASUREMENT_ID,
+        messagingSenderId: env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+        projectId: env.REACT_APP_FIREBASE_PROJECT_ID,
+        storageBucket: env.REACT_APP_FIREBASE_STORAGE_BUCKET
+    };
 }
 
 export default firebase;

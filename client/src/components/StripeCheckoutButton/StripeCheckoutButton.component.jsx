@@ -20,7 +20,7 @@ function StripeCheckoutButton ({
     onPayStart,
     price
 }) {
-    const publishableKey = "pk_test_LZ7qpHgv4YrtQbjvnfcw7v3m00vVaIlifV"; // TODO: env
+    const publishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
     const priceForStripe = price * 100;
 
     const onToken = (token) => onPayStart(priceForStripe, token);
