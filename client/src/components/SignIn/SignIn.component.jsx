@@ -36,15 +36,15 @@ function SignIn ({
 
     return (
         <section className={styles.container}>
-            <section className={styles.header}>
-                <h2>
+            <header className={styles.header}>
+                <div className={styles.title}>
                     I already have an account
-                </h2>
+                </div>
 
                 <span>
                     Sign in with your email and password
                 </span>
-            </section>
+            </header>
 
             <form onSubmit={handleSubmit}>
                 <FormInput

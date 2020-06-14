@@ -20,57 +20,73 @@ function CheckoutItem ({
     onRemoveItem
 }) {
     const {
+        album,
+        artist,
         imageUrl,
-        name,
         price,
         quantity
     } = cartItem;
 
+    const descriptionCell = (
+        <div>
+            <div className={styles.bold}>
+                {artist}
+            </div>
+
+            <div>
+                {album}
+            </div>
+        </div>
+    );
+
     return (
-        <section className={styles.container}>
-            <section className={styles.imageContainer}>
+        <tr className={styles.container}>
+            <td className={styles.imageContainer}>
                 <img
                     alt="item"
                     className={styles.image}
                     src={imageUrl}
+                    title={`${artist} - ${album}`}
                 />
-            </section>
+            </td>
 
-            <span className={styles.name}>
-                {name}
-            </span>
+            <td className={styles.description}>
+                {descriptionCell}
+            </td>
 
-            <span className={styles.quantity}>
-                <div
-                    className={styles.arrow}
-                    onClick={() => onRemoveItem(cartItem)}
-                >
-                    &#10094;
+            <td className={styles.quantity}>
+                <div className={styles.count}>
+                    <div
+                        className={styles.arrow}
+                        onClick={() => onRemoveItem(cartItem)}
+                    >
+                        &#10094;
+                    </div>
+
+                    <span className={styles.value}>
+                        {quantity}
+                    </span>
+
+                    <div
+                        className={styles.arrow}
+                        onClick={() => onAddItem(cartItem)}
+                    >
+                        &#10095;
+                    </div>
                 </div>
+            </td>
 
-                <span className={styles.value}>
-                    {quantity}
-                </span>
-
-                <div
-                    className={styles.arrow}
-                    onClick={() => onAddItem(cartItem)}
-                >
-                    &#10095;
-                </div>
-            </span>
-
-            <span className={styles.price}>
+            <td className={styles.price}>
                 {price}
-            </span>
+            </td>
 
-            <div
+            <td
                 className={styles.removeButton}
                 onClick={() => onClearItem(cartItem)}
             >
                 &#10005;
-            </div>
-        </section>
+            </td>
+        </tr>
     );
 }
 

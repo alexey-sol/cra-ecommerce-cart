@@ -3,44 +3,54 @@
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 55%;
-    min-height: 90vh;
-    margin: 5rem auto 0;
+    width: 100%;
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      padding: 1rem 0;
-      border-bottom: 0.1rem solid $gray--dark;
+    section {
+        margin-top: 4rem;
+    }
 
-      .headerBlock {
-        width: 23%;
+    table {
+        border-collapse: collapse;
+    }
+
+    th {
+        border-bottom: 0.1rem solid $gray--dark;
+        padding-bottom: 1rem;
         font-size: $font-size--small;
+        font-weight: normal;
         text-transform: capitalize;
-    
-        &:last-child {
-          width: 8%;
+        text-align: center;
+
+        &:first-of-type {
+            text-align: left;
         }
-      }
+    }
+
+    .descriptionHeader,
+    .quantityHeader,
+    .priceHeader {
+        padding-right: 3vw;
+        padding-left: 3vw;
     }
 
     .total {
-      margin-top: 3rem;
-      margin-left: auto;
-      font-size: $font-size--largest;
+        font-size: $font-size--largest;
     }
 
     .stripeCheckoutButton {
-      margin-top: 5rem;
-      margin-left: auto;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .testWarning {
-      margin-top: 4rem;
-      color: $error-color;
-      font-size: $font-size--larger;
-      text-align: center;
+        color: $error-color;
+        font-size: $font-size--larger;
+        text-align: center;
+    }
+
+    @media screen and (max-width: 500px) {
+        .descriptionHeader {
+            display: none;
+        }
     }
 }

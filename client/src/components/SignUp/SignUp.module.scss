@@ -3,15 +3,16 @@
 .container {
     display: flex;
     flex-direction: column;
-    width: 38rem;
+    max-width: 40rem;
 
     .header {
         display: flex;
         flex-direction: column;
 
-        h2 {
+        .title {
             margin: 1rem 0;
             font-size: $font-size--larger;
+            font-weight: bold;
         }
 
         span {
@@ -19,8 +20,7 @@
         }
     }
 
-    .buttons {
-        display: flex;
-        justify-content: space-between;
+    button {
+        width: 100%;
     }
 }

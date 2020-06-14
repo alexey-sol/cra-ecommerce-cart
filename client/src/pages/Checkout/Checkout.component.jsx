@@ -21,39 +21,35 @@ function Checkout ({ cartItems, total }) {
 
     return (
         <section className={styles.container}>
-            <section className={styles.header}>
-                <div className={styles.headerBlock}>
-                    <span>
-                        Product
-                    </span>
-                </div>
+            <table>
+                <thead className={styles.header}>
+                    <tr>
+                        <th>
+                            Product
+                        </th>
 
-                <div className={styles.headerBlock}>
-                    <span>
-                        Description
-                    </span>
-                </div>
+                        <th className={styles.descriptionHeader}>
+                            Description
+                        </th>
 
-                <div className={styles.headerBlock}>
-                    <span>
-                        Quantity
-                    </span>
-                </div>
+                        <th className={styles.quantityHeader}>
+                            Quantity
+                        </th>
 
-                <div className={styles.headerBlock}>
-                    <span>
-                        Price
-                    </span>
-                </div>
+                        <th className={styles.priceHeader}>
+                            Price
+                        </th>
 
-                <div className={styles.headerBlock}>
-                    <span>
-                        Remove
-                    </span>
-                </div>
-            </section>
+                        <th>
+                            Remove
+                        </th>
+                    </tr>
+                </thead>
 
-            {cartItemElements}
+                <tbody>
+                    {cartItemElements}
+                </tbody>
+            </table>
 
             <section className={styles.total}>
                 <span>
@@ -62,16 +58,16 @@ function Checkout ({ cartItems, total }) {
             </section>
 
             <section className={styles.testWarning}>
-                * Please use the following test credit card for payments:
+                * Stripe offers a bunch of test credit cards. You can use this one:
                 <br />
-                4242 4242 4242 4242 - Exp: 01/30 - CVV: 123
+                4242 4242 4242 4242 - Exp: 01/99 - CVV: 123
             </section>
 
             <section className={styles.stripeCheckoutButton}>
                 <StripeCheckoutButton price={total} />
             </section>
         </section>
-    ); // TODO: fix all this hardcoded stuff
+    );
 }
 
 const mapStateToProps = createStructuredSelector({

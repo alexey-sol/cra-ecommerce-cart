@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import ErrorBoundary from "components/ErrorBoundary";
+import Footer from "components/Footer";
 import Header from "components/Header";
 import Spinner from "components/Spinner";
 import { checkSession } from "redux/auth/auth.actions";
@@ -32,6 +33,7 @@ function App ({ onCheckSession, user }) {
     return (
         <section className={styles.container}>
             <Header />
+
             <ErrorBoundary>
                 <Suspense fallback={<Spinner />}>
                     <Switch>
@@ -64,6 +66,8 @@ function App ({ onCheckSession, user }) {
                     </Switch>
                 </Suspense>
             </ErrorBoundary>
+
+            <Footer />
         </section>
     );
 }

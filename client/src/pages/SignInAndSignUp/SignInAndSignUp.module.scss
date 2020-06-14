@@ -1,6 +1,11 @@
 .container {
-    display: flex;
-    justify-content: space-between;
-    // width: 85rem; // TODO: find out if this is necessary
-    margin: 3rem auto;
+    display: grid;
+    grid-template-columns: repeat(2, 38rem);
+    row-gap: 5vh;
+    column-gap: 5vw;
+    justify-content: center;
+
+    @media screen and (max-width: 900px) {
+        grid-template-columns: 1fr;
+    }
 }

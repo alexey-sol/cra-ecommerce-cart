@@ -36,9 +36,9 @@ function MenuItem ({
             />
 
             <section className={styles.content}>
-                <h1 className={styles.title}>
+                <header className={styles.title}>
                     {title.toUpperCase()}
-                </h1>
+                </header>
 
                 <span className={styles.subTitle}>
                     TAKE A LOOK

@@ -27,16 +27,12 @@ function StripeCheckoutButton ({
 
     useEffect(() => {
         if (charge) {
-            console.log("Payment successful"); // TODO: popup
+            alert("Payment successful"); // TODO: popup?
         }
 
         if (error) {
-            console.log("Payment error: ", error);
-
-            console.error(
-                "There was an issue with your payment. Please make sure you use " +
-                "the provided credit card."
-            );
+            console.error("Payment error: ", error);
+            alert("Payment failed: something went wrong");
         }
     }, [charge, error]);
 
@@ -46,9 +42,9 @@ function StripeCheckoutButton ({
             billingAddress
             description={`Your total is $${price}`}
             disabled={!priceForStripe}
-            label="Pay Now"
+            label="Buy the stuff"
             name="CRA E-commerce Cart"
-            panelLabel="Pay Now"
+            panelLabel="Buy the stuff"
             shippingAddress
             stripeKey={publishableKey}
             token={onToken}

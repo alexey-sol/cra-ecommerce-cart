@@ -1,6 +1,7 @@
 @import "styles/style.scss";
 
 .container {
+    position: relative;
     display: flex;
     flex: 1 1 auto;
     align-items: center;
@@ -10,6 +11,8 @@
     height: 24rem;
     border: 0.1rem solid $menu-item-border-color;
     margin: 0 0.75rem 1.5rem;
+    margin-right: 0.75rem;
+    text-align: center;
 
     &:hover {
         cursor: pointer;
@@ -22,14 +25,6 @@
 
     &.large {
         height: 38rem;
-    }
-
-    &:first-child {
-        margin-right: 0.75rem;
-    }
-
-    &:last-child {
-        margin-left: 0.75rem;
     }
 
     .backgroundImage {
@@ -57,10 +52,9 @@
         padding: 0 2.5rem;
         border: 0.1rem solid $menu-item-border-color;
         background-color: $menu-item-bg-color;
+        color: $menu-item-text-color;
 
         .title {
-            margin: 0 0.6rem 0;
-            color: $menu-item-text-color;
             font-size: $font-size--larger;
             font-weight: bold;
         }
@@ -73,5 +67,16 @@
 
     @media screen and (max-width: 800px) {
         height: 20rem !important;
+    }
+
+    @media screen and (max-width: 500px) {
+        .content {
+            width: 100%;
+            padding: 0;
+        }
+
+        .subTitle {
+            display: none;
+        };
     }
 }

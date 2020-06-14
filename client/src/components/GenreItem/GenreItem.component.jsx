@@ -18,9 +18,6 @@ function GenreItem ({ item, onAddItemToCart }) {
         year
     } = item;
 
-    // TODO: add
-    // Disclaimer: the prices are totally arbitrary and have nothing in common with reality.
-
     const backgroundImageStyle = {
         backgroundImage: `url(${imageUrl})`
     };
@@ -52,7 +49,7 @@ function GenreItem ({ item, onAddItemToCart }) {
                 </div>
 
                 <span className={styles.price}>
-                    ${price}
+                    {`$${price}`}
                 </span>
             </section>
         </li>

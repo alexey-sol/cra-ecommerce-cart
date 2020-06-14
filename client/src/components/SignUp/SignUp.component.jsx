@@ -45,15 +45,15 @@ function SignUp ({ onSignUpStart }) {
 
     return (
         <section className={styles.container}>
-            <section className={styles.header}>
-                <h2>
+            <header className={styles.header}>
+                <div className={styles.title}>
                     I do not have an account
-                </h2>
+                </div>
 
                 <span>
                     Sign up with your email and password
                 </span>
-            </section>
+            </header>
 
             <form onSubmit={handleSubmit}>
                 <FormInput

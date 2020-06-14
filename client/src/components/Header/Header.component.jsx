@@ -40,7 +40,7 @@ function Header ({ cartIsShown, onSignOutStart, user }) {
                     onClick={onSignOutStart}
                 >
                     {(user)
-                        ? <span>SIGN OUT</span>
+                        ? <a href="">SIGN OUT</a>
                         : <Link to="/sign-in">SIGN IN</Link>}
                 </li>
 
