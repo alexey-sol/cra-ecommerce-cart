@@ -1,10 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
 
 import GenrePreview from "components/GenrePreview";
-import { defaultProps, propTypes } from "./GenresOverview.props";
-import { selectGenresForPreview } from "redux/shop/shop.selectors";
+import { defaultProps, propTypes } from "./GenresOverview.component.props";
 import styles from "./GenresOverview.module.scss";
 
 GenresOverview.defaultProps = defaultProps;
@@ -25,8 +22,4 @@ function GenresOverview ({ genres }) {
     );
 }
 
-const mapStateToProps = createStructuredSelector({
-    genres: selectGenresForPreview
-});
-
-export default connect(mapStateToProps)(GenresOverview);
+export default GenresOverview;

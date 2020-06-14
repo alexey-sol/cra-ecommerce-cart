@@ -19,13 +19,14 @@ function GenrePreview ({ items, title }) {
         ));
 
     const genrePath = `shop/${title.toLowerCase()}`;
+    const titleTooltipText = `Show all ${title}`;
 
     return (
         <li className={styles.container}>
             <header className={styles.title}>
                 <CustomLink
                     className={styles.link}
-                    title="Show all"
+                    title={titleTooltipText}
                     to={genrePath}
                 >
                     {title.toUpperCase()}

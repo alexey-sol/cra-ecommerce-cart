@@ -1,18 +1,33 @@
+import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { createStructuredSelector } from "reselect";
 
-import { selectIsGenresFetched } from "redux/shop/shop.selectors";
-import GenrePage from "./Genre.component";
+import Genre from "./Genre.component";
 import WithSpinner from "components/WithSpinner";
+import { defaultProps, propTypes } from "./Genre.container.props";
+import { selectGenre, selectIsGenresFetched } from "redux/shop/shop.selectors";
 
-const mapStateToProps = createStructuredSelector({
-    isFetching: (newState) => !selectIsGenresFetched(newState)
-});
+GenreContainer.defaultProps = defaultProps;
+GenreContainer.propTypes = propTypes;
 
-const GenrePageContainer = compose(
+function GenreContainer ({ genre }) {
+    return (
+        <Genre genre={genre} />
+    );
+}
+
+function mapStateToProps (state, ownProps) {
+    const { genreId } = ownProps.match.params || {};
+
+    return {
+        genre: selectGenre(genreId)(state),
+        isFetching: !selectIsGenresFetched
+    };
+}
+
+const ConnectedPage = compose(
     connect(mapStateToProps),
     WithSpinner
-)(GenrePage);
+)(GenreContainer);
 
-export default GenrePageContainer;
+export default ConnectedPage;

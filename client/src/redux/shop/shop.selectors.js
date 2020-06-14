@@ -26,9 +26,9 @@ export const selectGenresForPreview = createSelector(
     }
 );
 
-export const selectGenre = (genreUrlParam) => {
+export const selectGenre = (genreId) => {
     return createSelector(
         [selectGenres],
-        (genres) => genres[genreUrlParam]
+        (genres) => genres[genreId]
     );
 };

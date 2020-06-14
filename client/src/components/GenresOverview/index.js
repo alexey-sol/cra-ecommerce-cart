@@ -1,1 +1,1 @@
-export { default } from "./GenresOverview.component";
+export { default } from "./GenresOverview.container";
