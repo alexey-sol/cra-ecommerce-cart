@@ -7,11 +7,14 @@ CartItem.propTypes = propTypes;
 
 function CartItem ({ item }) {
     const {
+        album,
+        artist,
         imageUrl,
-        name,
         price,
         quantity
     } = item;
+
+    const description = `${artist} - ${album}`;
 
     return (
         <section className={styles.container}>
@@ -19,11 +22,12 @@ function CartItem ({ item }) {
                 alt="item"
                 className={styles.image}
                 src={imageUrl}
+                title={description}
             />
 
             <section className={styles.itemDetails}>
-                <span className={styles.name}>
-                    {name}
+                <span className={styles.description}>
+                    {description}
                 </span>
 
                 <span className={styles.price}>

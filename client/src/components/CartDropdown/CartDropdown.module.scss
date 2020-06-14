@@ -3,20 +3,22 @@
 .container {
     position: absolute;
     z-index: 5;
-    top: 9rem;
-    right: 4rem;
+    top: 7rem;
+    right: 0;
     display: flex;
     flex-direction: column;
-    width: 24rem;
+    width: 50%;
     height: 34rem;
     padding: 2rem;
     border: 1px solid black;
     background-color: white;
+    animation: fade-in .1s;
 
     .cartItems {
+        @include scrollbar-for("&");
+        display: grid;
+        row-gap: 1.5rem;
         overflow: auto;
-        display: flex;
-        flex-direction: column;
         height: 24rem;
     }
     
@@ -27,5 +29,9 @@
     
     button {
         margin-top: auto;
+    }
+
+    @media screen and (max-width: 500px) {
+        width: 20rem;
     }
 }

@@ -1,7 +1,7 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
+import { withRouter } from "react-router-dom";
 
 import BaseButton from "components/BaseButton";
 import CartItem from "components/CartItem";
@@ -19,6 +19,37 @@ function CartDropdown ({
     onToggleCartShown
 }) {
     const { push } = history;
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        const dropdown = dropdownRef.current;
+
+        if (!dropdown) {
+            return;
+        }
+
+        const handleClick = ({ target }) => {
+            const isClickOutside = !dropdown.contains(target);
+
+            if (isClickOutside) {
+                onToggleCartShown();
+            }
+        };
+
+        const handleKeydown = ({ key }) => {
+            if (key === "Escape") {
+                onToggleCartShown();
+            }
+        };
+
+        document.addEventListener("click", handleClick);
+        document.addEventListener("keydown", handleKeydown);
+
+        return () => {
+            document.removeEventListener("click", handleClick);
+            document.removeEventListener("keydown", handleKeydown);
+        };
+    }, [onToggleCartShown]);
 
     const cartItemElements = cartItems.map(cartItem => (
         <CartItem
@@ -39,7 +70,10 @@ function CartDropdown ({
     );
 
     return (
-        <section className={styles.container}>
+        <section
+            className={styles.container}
+            ref={dropdownRef}
+        >
             <section className={styles.cartItems}>
                 {(cartItems.length > 0)
                     ? cartItemElements

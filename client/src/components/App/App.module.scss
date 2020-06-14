@@ -5,6 +5,7 @@ html {
 }
 
 body {
+    @include scrollbar-for("&");
     padding: 0;
     margin: 0;
     -webkit-font-smoothing: antialiased;
@@ -13,18 +14,6 @@ body {
     font-size: $font-size--medium;
     color: $text-color--normal;
     overflow-y: scroll;
-
-    &::-webkit-scrollbar {
-        width: $scrollbar-width;
-    }
-
-    &::-webkit-scrollbar-track {
-        background-color: $scrollbar-track-color;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: $scrollbar-thumb-color;
-    }
 
     a {
         color: $text-color--normal;
