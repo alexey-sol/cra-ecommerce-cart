@@ -1,11 +1,7 @@
 import PropTypes from "prop-types";
 
-const { bool } = PropTypes;
-
-export const defaultProps = {
-    isLoading: false
-};
+const { element } = PropTypes;
 
 export const propTypes = {
-    isLoading: bool
+    WrappedComponent: element
 };

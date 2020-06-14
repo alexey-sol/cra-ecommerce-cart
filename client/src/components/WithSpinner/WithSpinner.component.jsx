@@ -1,25 +1,24 @@
 import React from "react";
 
 import Spinner from "components/Spinner";
-import { defaultProps, propTypes } from "./WithSpinner.props";
+import { propTypes } from "./WithSpinner.props";
 
-WithSpinner.defaultProps = defaultProps;
+import {
+    defaultProps as subDefaultProps,
+    propTypes as subPropTypes
+} from "./Sub.props";
+
 WithSpinner.propTypes = propTypes;
 
 function WithSpinner (WrappedComponent) {
-    return ({ isLoading, ...rest }) => {
-        const renderSpinnerOverlay = () => (
-            <Spinner />
-        );
+    const Sub = ({ isFetching, ...rest }) => (isFetching)
+        ? <Spinner />
+        : <WrappedComponent {...rest} />;
 
-        const renderWrappedComponent = () => (
-            <WrappedComponent {...rest} />
-        );
+    Sub.defaultProps = subDefaultProps;
+    Sub.propTypes = subPropTypes;
 
-        return (isLoading)
-            ? renderSpinnerOverlay()
-            : renderWrappedComponent();
-    };
+    return Sub;
 }
 
 export default WithSpinner;

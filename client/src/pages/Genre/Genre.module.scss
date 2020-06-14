@@ -1,0 +1,33 @@
+@import "styles/style.scss";
+
+.container {
+    display: grid;
+    row-gap: 3rem;
+
+    .header {
+        font-size: $font-size--largest;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .items {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 35rem);
+        row-gap: 6rem;
+        column-gap: 2rem;
+        justify-content: space-between;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+
+          
+    @media screen and (max-width: 400px) {
+        justify-content: center;
+
+        .items {
+            grid-template-columns: 1fr;
+            row-gap: 3rem;
+        }
+    }
+}

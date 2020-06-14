@@ -4,31 +4,31 @@ function selectShop ({ shop }) {
     return shop;
 }
 
-export const selectIsCollectionFetching = createSelector(
+export const selectIsGenreFetching = createSelector(
     [selectShop],
     ({ isFetching }) => isFetching
 );
 
-export const selectIsCollectionsLoaded = createSelector(
+export const selectIsGenresFetched = createSelector(
     [selectShop],
-    ({ collections }) => Boolean(collections)
+    ({ genres }) => Boolean(genres)
 );
 
-export const selectShopCollections = createSelector(
+export const selectGenres = createSelector(
     [selectShop],
-    ({ collections }) => collections
+    ({ genres }) => genres
 );
 
-export const selectShopCollectionsForPreview = createSelector(
-    [selectShopCollections],
-    (collections) => {
-        return Object.keys(collections).map(collection => collections[collection]);
+export const selectGenresForPreview = createSelector(
+    [selectGenres],
+    (genres) => {
+        return Object.keys(genres).map(genre => genres[genre]);
     }
 );
 
-export const selectShopCollection = (collectionUrlParam) => {
+export const selectGenre = (genreUrlParam) => {
     return createSelector(
-        [selectShopCollections],
-        (collections) => collections[collectionUrlParam]
+        [selectGenres],
+        (genres) => genres[genreUrlParam]
     );
 };

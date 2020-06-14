@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
-const { array } = PropTypes;
+const { bool } = PropTypes;
 
 export const defaultProps = {
-    genres: []
+    isFetching: false
 };
 
 export const propTypes = {
-    genres: array
+    isFetching: bool
 };

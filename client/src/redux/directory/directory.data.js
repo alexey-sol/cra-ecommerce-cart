@@ -1,30 +1,38 @@
-const SECTIONS = [{ // TODO: replace these
+import {
+    ALTERNATIVE,
+    EXTREME,
+    FUTURE_POP,
+    SOUNDTRACKS,
+    SYNTHWAVE
+} from "utils/const/genres";
+
+const SECTIONS = [{
     id: 1,
-    imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
-    linkUrl: "shop/hats",
-    title: "future pop"
+    imageUrl: "https://i.ibb.co/f9Snfr3/Future-Pop-Showcase.png",
+    linkUrl: `shop/${FUTURE_POP}`,
+    title: FUTURE_POP
 }, {
     id: 2,
-    imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
-    linkUrl: "shop/jackets",
-    title: "industrial"
+    imageUrl: "https://i.ibb.co/tYDTvq3/Alternative-Showcase.png",
+    linkUrl: `shop/${ALTERNATIVE}`,
+    title: ALTERNATIVE
 }, {
     id: 3,
-    imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
-    linkUrl: "shop/shoes",
-    title: "extreme"
+    imageUrl: "https://i.ibb.co/SQ3VYS0/Extreme-Showcase.png",
+    linkUrl: `shop/${EXTREME}`,
+    title: EXTREME
 }, {
     id: 4,
-    imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
-    linkUrl: "shop/women",
+    imageUrl: "https://i.ibb.co/wBsWZjp/Synthwave-Showcase.png",
+    linkUrl: `shop/${SYNTHWAVE}`,
     size: "large",
-    title: "Synthwave"
+    title: SYNTHWAVE
 }, {
     id: 5,
-    imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
-    linkUrl: "shop/men",
+    imageUrl: "https://i.ibb.co/6bq90Z6/Soundtracks-Showcase.png",
+    linkUrl: `shop/${SOUNDTRACKS}`,
     size: "large",
-    title: "Soundtracks"
+    title: SOUNDTRACKS
 }];
 
 export default SECTIONS;

@@ -1,0 +1,41 @@
+@import "styles/style.scss";
+
+.container {
+    display: grid;
+    row-gap: 1rem;
+
+    .title {
+        font-size: $font-size--larger;
+        font-weight: bold;
+
+        .link {
+            border-width: 0;
+            color: $text-color--normal;
+
+            &:hover {
+                color: $text-color--info;
+            }
+        }
+    }
+
+    .preview {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 35rem);
+        row-gap: 6rem;
+        column-gap: 2rem;
+        justify-content: space-between;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+
+
+    @media screen and (max-width: 400px) {
+        justify-content: center;
+
+        .preview {
+            grid-template-columns: 1fr;
+            row-gap: 3rem;
+        }
+    }
+}
