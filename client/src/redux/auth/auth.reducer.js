@@ -1,6 +1,7 @@
 import {
     CHECK_USER_SESSION,
     EMAIL_SIGN_IN_START,
+    GOOGLE_SIGN_IN_START,
     RESET_AUTH_STATE,
     SET_USER,
     SIGN_IN_FAILURE,
@@ -30,6 +31,7 @@ function authReducer (state = INITIAL_STATE, action = {}) {
             };
 
         case EMAIL_SIGN_IN_START:
+        case GOOGLE_SIGN_IN_START:
         case SIGN_OUT_START:
         case SIGN_UP_START:
             return {

@@ -32,11 +32,13 @@
             filter: invert(1);
         }
     
-        a {
+        a,
+        span {
             display: flex;
             align-items: center;
             height: 100%;
             padding: 0 1.5rem;
+            cursor: pointer;
         }
     }
     
