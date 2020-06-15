@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 const { bool } = PropTypes;
 
 export const defaultProps = {
-    isFetching: false
+    isPending: false
 };
 
 export const propTypes = {
-    isFetching: bool
+    isPending: bool
 };

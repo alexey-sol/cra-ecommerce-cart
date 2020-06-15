@@ -9,7 +9,7 @@ import { defaultProps, propTypes } from "./Category.container.props";
 
 import {
     selectCategoriesForPreview,
-    selectIsCategoriesFetching
+    selectIsCategoriesPending
 } from "redux/shop/shop.selectors";
 
 CategoryContainer.defaultProps = defaultProps;
@@ -27,7 +27,7 @@ function CategoryContainer ({ categories, match }) {
 
 const mapStateToProps = createStructuredSelector({
     categories: selectCategoriesForPreview,
-    isFetching: selectIsCategoriesFetching
+    isPending: selectIsCategoriesPending
 });
 
 const ConnectedPage = compose(

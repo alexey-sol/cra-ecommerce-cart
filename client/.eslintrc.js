@@ -62,6 +62,7 @@ module.exports = {
         "object-curly-spacing": [2, "always"],
         "operator-linebreak": 0,
         "react/button-has-type": 0,
+        "react/jsx-fragments": 0,
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
         "react/jsx-props-no-spreading": 0,

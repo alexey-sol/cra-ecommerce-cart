@@ -7,7 +7,7 @@ import {
 const INITIAL_STATE = {
     categories: [],
     errorMessage: null,
-    isFetching: false
+    isPending: false
 };
 
 function shopReducer (state = INITIAL_STATE, action = {}) {
@@ -18,20 +18,20 @@ function shopReducer (state = INITIAL_STATE, action = {}) {
             return {
                 ...state,
                 errorMessage: payload,
-                isFetching: false
+                isPending: false
             };
 
         case FETCH_CATEGORIES_START:
             return {
                 ...state,
-                isFetching: true
+                isPending: true
             };
 
         case FETCH_CATEGORIES_SUCCESS:
             return {
                 ...state,
                 categories: payload,
-                isFetching: false
+                isPending: false
             };
 
         default:

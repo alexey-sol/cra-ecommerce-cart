@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import getErrorFromResponse from "utils/http/getErrorFromResponse";
+
 import {
     all,
     call,
@@ -18,9 +20,9 @@ export function * pay ({ payload = {} }) {
             url: "api/v1/payment"
         });
 
-        const charge = response.data && response.data.success; // TODO: changed response, so won't work
-        yield put(paySuccess(charge));
-    } catch (error) {
+        yield put(paySuccess(response.data));
+    } catch (responseError) {
+        const error = getErrorFromResponse(responseError);
         yield put(payFailure(error));
     }
 }

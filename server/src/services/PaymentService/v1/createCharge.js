@@ -1,8 +1,7 @@
 import stripe from "stripe";
 
-import stripeConfig from "@config/stripe";
-
 export default async (props) => {
+    const stripeConfig = (await import("@config/stripe")).default;
     const { secretKey } = stripeConfig;
 
     const {

@@ -10,6 +10,6 @@ export default Joi.object({
         .optional(),
 
     token: Joi
-        .string()
+        .object()
         .required()
 });

@@ -11,7 +11,7 @@ import {
 WithSpinner.propTypes = propTypes;
 
 function WithSpinner (WrappedComponent) {
-    const Sub = ({ isFetching, ...rest }) => (isFetching)
+    const Sub = ({ isPending, ...rest }) => (isPending)
         ? <Spinner />
         : <WrappedComponent {...rest} />;
 

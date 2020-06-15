@@ -4,12 +4,12 @@ function selectShop ({ shop }) {
     return shop;
 }
 
-export const selectIsCategoryFetching = createSelector(
+export const selectIsCategoryPending = createSelector(
     [selectShop],
-    ({ isFetching }) => isFetching
+    ({ isPending }) => isPending
 );
 
-export const selectIsCategoriesFetching = createSelector(
+export const selectIsCategoriesPending = createSelector(
     [selectShop],
     ({ categories }) => categories.length === 0
 );

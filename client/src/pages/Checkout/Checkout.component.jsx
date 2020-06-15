@@ -58,9 +58,20 @@ function Checkout ({ cartItems, total }) {
             </section>
 
             <section className={styles.testWarning}>
-                * Stripe offers a bunch of test credit cards. You can use this one:
-                <br />
-                4242 4242 4242 4242 - Exp: 01/99 - CVV: 123
+                <div>
+                    * Stripe offers a bunch of test credit cards. You may use these
+                    (with Exp: 01/30 and CVV: 123):
+                </div>
+
+                <ul className={styles.testCardsList}>
+                    <li>
+                        4242 4242 4242 4242 - success
+                    </li>
+
+                    <li>
+                        4000 0000 0000 0002 - card declined
+                    </li>
+                </ul>
             </section>
 
             <section className={styles.stripeCheckoutButton}>

@@ -5,8 +5,8 @@ import schemaValidation from "./schemaValidation";
 
 const router = express.Router();
 
-router.get(
-    "/*",
+router.post(
+    "/",
     schemaValidation.postPayment,
     controllers.postPayment
 );

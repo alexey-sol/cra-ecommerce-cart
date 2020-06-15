@@ -4,10 +4,10 @@ const { array, bool } = PropTypes;
 
 export const defaultProps = {
     categories: [],
-    isFetching: false
+    isPending: false
 };
 
 export const propTypes = {
     categories: array,
-    isFetching: bool
+    isPending: bool
 };

@@ -1,11 +1,14 @@
 import {
     PAY_FAILURE,
+    PAY_RESET,
+    PAY_START,
     PAY_SUCCESS
 } from "./payment.types";
 
 const INITIAL_STATE = {
     charge: null,
-    error: null
+    error: null,
+    isPending: false
 };
 
 function paymentReducer (state = INITIAL_STATE, action = {}) {
@@ -15,14 +18,25 @@ function paymentReducer (state = INITIAL_STATE, action = {}) {
         case PAY_FAILURE:
             return {
                 ...state,
-                error: payload
+                error: payload,
+                isPending: false
+            };
+
+        case PAY_RESET:
+            return INITIAL_STATE;
+
+        case PAY_START:
+            return {
+                ...state,
+                isPending: true
             };
 
         case PAY_SUCCESS:
             return {
                 ...state,
                 charge: payload,
-                error: null
+                error: null,
+                isPending: false
             };
 
         default:

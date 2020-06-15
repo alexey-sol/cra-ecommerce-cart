@@ -1,15 +1,18 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
+import Popup from "components/Popup";
+
 import {
     selectCharge,
-    selectError
+    selectError,
+    selectIsPaymentPending
 } from "redux/payment/payment.selectors";
 
 import { defaultProps, propTypes } from "./StripeCheckoutButton.props";
-import { payStart } from "redux/payment/payment.actions";
+import { payReset, payStart } from "redux/payment/payment.actions";
 
 StripeCheckoutButton.defaultProps = defaultProps;
 StripeCheckoutButton.propTypes = propTypes;
@@ -17,47 +20,68 @@ StripeCheckoutButton.propTypes = propTypes;
 function StripeCheckoutButton ({
     charge,
     error,
+    isPending,
+    onPayReset,
     onPayStart,
     price
 }) {
     const publishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
     const priceForStripe = price * 100;
-
     const onToken = (token) => onPayStart(priceForStripe, token);
 
     useEffect(() => {
-        if (charge) {
-            alert("Payment successful"); // TODO: popup?
-        }
+        return () => {
+            onPayReset();
+        };
+    }, [onPayReset]);
 
-        if (error) {
-            console.error("Payment error: ", error);
-            alert("Payment failed: something went wrong");
-        }
-    }, [charge, error]);
+    let popupText = "";
+    let popupTheme = "";
+
+    if (charge) {
+        popupText = "Payment successful";
+        popupTheme = "success";
+    } else if (error) {
+        popupText = error.message;
+        popupTheme = "error";
+    }
+
+    const buttonIsDisabled = isPending || !priceForStripe;
 
     return (
-        <StripeCheckout
-            amount={priceForStripe}
-            billingAddress
-            description={`Your total is $${price}`}
-            disabled={!priceForStripe}
-            label="Buy the stuff"
-            name="CRA E-commerce Cart"
-            panelLabel="Buy the stuff"
-            shippingAddress
-            stripeKey={publishableKey}
-            token={onToken}
-        />
+        <Fragment>
+            <StripeCheckout
+                amount={priceForStripe}
+                billingAddress
+                description={`Your total is $${price}`}
+                disabled={buttonIsDisabled}
+                label="Buy the stuff"
+                name="CRA E-commerce Cart"
+                panelLabel="Buy the stuff"
+                shippingAddress
+                stripeKey={publishableKey}
+                token={onToken}
+            />
+
+            {Boolean(popupText) && (
+                <Popup
+                    onClose={onPayReset}
+                    text={popupText}
+                    theme={popupTheme}
+                />
+            )}
+        </Fragment>
     );
 }
 
 const mapStateToProps = createStructuredSelector({
     charge: selectCharge,
-    error: selectError
+    error: selectError,
+    isPending: selectIsPaymentPending
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    onPayReset: () => dispatch(payReset()),
     onPayStart: (amount, token) => dispatch(payStart({
         amount,
         token

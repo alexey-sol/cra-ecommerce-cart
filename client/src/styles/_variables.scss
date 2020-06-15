@@ -1,4 +1,5 @@
 $font-family--normal: "Open Sans Condensed", sans-serif;
+$font-family--system: "Roboto", sans-serif;
 
 $font-size--smallest: 1rem;
 $font-size--smaller: 1.2rem;
@@ -7,6 +8,8 @@ $font-size--medium: 1.8rem;
 $font-size--large: 2rem;
 $font-size--larger: 2.2rem;
 $font-size--largest: 3.6rem;
+
+$popup-height: 7rem;
 
 $scrollbar-width: 1rem;
 
@@ -50,5 +53,12 @@ $menu-item-text-color: #4a4a4a;
 
 $navbar-option-bg-color: $color-secondary;
 
+$popup-bg-color--error: #ff8888;
+$popup-text-color--error: white;
+$popup-bg-color--success: #12e470;
+$popup-text-color--success: white;
+$popup-bg-color--warning: gold;
+$popup-text-color--warning: white;
+
 $scrollbar-thumb-color: $gray;
-$scrollbar-track-color: $color-secondary;
+$scrollbar-track-color: $gray--lighten;

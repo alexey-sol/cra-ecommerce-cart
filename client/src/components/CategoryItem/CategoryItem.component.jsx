@@ -23,7 +23,6 @@ function CategoryItem ({ item, onAddItemToCart }) {
     };
 
     const handleClick = useCallback(() => onAddItemToCart(item), [item, onAddItemToCart]);
-    // TODO: check if the user is signed in
 
     return (
         <li className={styles.container}>
