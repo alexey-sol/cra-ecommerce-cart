@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import BaseButton from "components/BaseButton";
 import FormInput from "components/FormInput";
-import { propTypes } from "./SignUp.props";
+import Popup from "components/Popup";
+import { defaultProps, propTypes } from "./SignUp.props";
+import { selectIsPending } from "redux/auth/auth.selectors";
 import { signUpStart } from "redux/auth/auth.actions";
 import styles from "./SignUp.module.scss";
 
+SignUp.defaultProps = defaultProps;
 SignUp.propTypes = propTypes;
 
-function SignUp ({ onSignUpStart }) {
+function SignUp ({ isPending, onSignUpStart }) {
+    const [validationError, setValidationError] = useState("");
+
     const [credentials, setCredentials] = useState({
         confirmPassword: "",
         displayName: "",
@@ -37,7 +43,7 @@ function SignUp ({ onSignUpStart }) {
         event.preventDefault();
 
         if (password !== confirmPassword) {
-            return console.error("Passwords don't match");
+            return setValidationError("Passwords don't match");
         }
 
         onSignUpStart({ displayName, email, password });
@@ -94,21 +100,34 @@ function SignUp ({ onSignUpStart }) {
 
                 <BaseButton
                     className={styles.button}
+                    disabled={isPending}
                     type="submit"
                 >
                     SIGN UP
                 </BaseButton>
             </form>
+
+            {Boolean(validationError) && (
+                <Popup
+                    onClose={() => setValidationError("")}
+                    text={validationError}
+                    theme="error"
+                />
+            )}
         </section>
     );
 }
+
+const mapStateToProps = createStructuredSelector({
+    isPending: selectIsPending
+});
 
 const mapDispatchToProps = (dispatch) => ({
     onSignUpStart: (userCredentials) => dispatch(signUpStart(userCredentials))
 });
 
 const ConnectedSignUp = connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(SignUp);
 

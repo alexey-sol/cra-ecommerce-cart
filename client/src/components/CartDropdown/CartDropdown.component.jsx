@@ -7,7 +7,6 @@ import BaseButton from "components/BaseButton";
 import CartItem from "components/CartItem";
 import { defaultProps, propTypes } from "./CartDropdown.props";
 import { selectCartItems } from "redux/cart/cart.selectors";
-import { selectUser } from "redux/auth/auth.selectors";
 import { toggleCartShown } from "redux/cart/cart.actions";
 import styles from "./CartDropdown.module.scss";
 
@@ -17,8 +16,7 @@ CartDropdown.propTypes = propTypes;
 function CartDropdown ({
     cartItems,
     history,
-    onToggleCartShown,
-    user
+    onToggleCartShown
 }) {
     const { push } = history;
     const dropdownRef = useRef(null);
@@ -60,15 +58,10 @@ function CartDropdown ({
         />
     ));
 
-    const userIsAuthed = Boolean(user);
-
-    const checkSessionAndRedirect = useCallback(() => {
+    const redirectToCheckout = useCallback(() => {
         onToggleCartShown();
-
-        return (userIsAuthed)
-            ? push("/checkout")
-            : push("/sign-in");
-    }, [onToggleCartShown, push, userIsAuthed]);
+        push("/checkout");
+    }, [onToggleCartShown, push]);
 
     const emptyCardMessageElement = (
         <span className={styles.emptyCartMessage}>
@@ -89,7 +82,7 @@ function CartDropdown ({
 
             <BaseButton
                 disabled={cartItems.length === 0}
-                onClick={checkSessionAndRedirect}
+                onClick={redirectToCheckout}
             >
                 GO TO CHECKOUT
             </BaseButton>
@@ -98,8 +91,7 @@ function CartDropdown ({
 }
 
 const mapStateToProps = createStructuredSelector({
-    cartItems: selectCartItems,
-    user: selectUser
+    cartItems: selectCartItems
 });
 
 const mapDispatchToProps = (dispatch) => ({

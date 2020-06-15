@@ -3,6 +3,7 @@ import React, { Suspense, lazy, useEffect } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
+import { PrivateRoute } from "components/Route";
 import ErrorBoundary from "components/ErrorBoundary";
 import Footer from "components/Footer";
 import Header from "components/Header";
@@ -49,15 +50,13 @@ function App ({ onCheckSession, user }) {
                         />
 
                         <Route
-                            component={Checkout}
-                            exact
-                            path="/checkout"
-                        />
-
-                        <Route
-                            exact
                             path="/sign-in"
                             render={renderSignIn}
+                        />
+
+                        <PrivateRoute
+                            component={Checkout}
+                            path="/checkout"
                         />
 
                         <Route

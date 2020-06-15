@@ -42,12 +42,6 @@
             "album .";
         overflow-x: hidden;
 
-        .artist.sortingIsOn,
-        .album.sortingIsOn,
-        .price.sortingIsOn {
-            cursor: pointer;
-        }
-
         .artist {
             grid-area: artist;
             font-weight: bold;
@@ -90,4 +84,8 @@
             height: 25rem;
         }
     }
+}
+
+.sortingIsOn {
+    cursor: pointer;
 }

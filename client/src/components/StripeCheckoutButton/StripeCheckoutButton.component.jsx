@@ -12,7 +12,7 @@ import {
 } from "redux/payment/payment.selectors";
 
 import { defaultProps, propTypes } from "./StripeCheckoutButton.props";
-import { payReset, payStart } from "redux/payment/payment.actions";
+import { payStart, resetPaymentState } from "redux/payment/payment.actions";
 
 StripeCheckoutButton.defaultProps = defaultProps;
 StripeCheckoutButton.propTypes = propTypes;
@@ -21,8 +21,8 @@ function StripeCheckoutButton ({
     charge,
     error,
     isPending,
-    onPayReset,
     onPayStart,
+    onResetPaymentState,
     price
 }) {
     const publishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
@@ -31,9 +31,9 @@ function StripeCheckoutButton ({
 
     useEffect(() => {
         return () => {
-            onPayReset();
+            onResetPaymentState();
         };
-    }, [onPayReset]);
+    }, [onResetPaymentState]);
 
     let popupText = "";
     let popupTheme = "";
@@ -65,7 +65,7 @@ function StripeCheckoutButton ({
 
             {Boolean(popupText) && (
                 <Popup
-                    onClose={onPayReset}
+                    onClose={onResetPaymentState}
                     text={popupText}
                     theme={popupTheme}
                 />
@@ -81,11 +81,11 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onPayReset: () => dispatch(payReset()),
     onPayStart: (amount, token) => dispatch(payStart({
         amount,
         token
-    }))
+    })),
+    onResetPaymentState: () => dispatch(resetPaymentState())
 });
 
 const ConnectedStripeCheckoutButton = connect(

@@ -17,7 +17,7 @@ export const propTypes = {
     charge: object,
     error: object,
     isPending: bool,
-    onPayReset: func.isRequired,
     onPayStart: func.isRequired,
+    onResetPaymentState: func.isRequired,
     price: number.isRequired
 };

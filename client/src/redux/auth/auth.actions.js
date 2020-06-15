@@ -2,6 +2,7 @@ import {
     CHECK_USER_SESSION,
     EMAIL_SIGN_IN_START,
     GOOGLE_SIGN_IN_START,
+    RESET_AUTH_STATE,
     SET_USER,
     SIGN_IN_FAILURE,
     SIGN_IN_SUCCESS,
@@ -29,6 +30,12 @@ export function emailSignInStart (emailAndPassword) {
 export function googleSignInStart () {
     return {
         type: GOOGLE_SIGN_IN_START
+    };
+}
+
+export function resetAuthState () {
+    return {
+        type: RESET_AUTH_STATE
     };
 }
 

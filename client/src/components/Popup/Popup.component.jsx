@@ -17,7 +17,7 @@ function Popup ({ onClose, text, theme }) {
     );
 
     useEffect(() => {
-        const timeoutInMs = 4000;
+        const timeoutInMs = 3000;
         timerRef.current = setTimeout(onClose, timeoutInMs);
 
         return () => {
