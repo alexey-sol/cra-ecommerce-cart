@@ -6,8 +6,9 @@
     "dev-client": "cd client && npm start",
     "dev-server": "cd server && npm run dev",
     "dev": "npx concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run dev-client\"",
+    "prod": "cd server && npm run prod",
     "build": "cd client && npm run build",
-    "start": "npx pm2 start server/src/index.js",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
-  }
+  },
+  "heroku-run-build-script": true
 }

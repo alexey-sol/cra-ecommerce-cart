@@ -19,7 +19,7 @@ export default ({ app }) => {
 
     if (isProduction) {
         const root = process.cwd();
-        const buildDirPath = path.join(root, "client", "build");
+        const buildDirPath = path.join(root, "..", "client", "build");
         app.use(express.static(buildDirPath));
         app.use("/", rootRouter);
     }

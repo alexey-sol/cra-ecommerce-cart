@@ -1,6 +1,10 @@
 {
   "name": "cra-ecommerce-cart",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=12.0.0 <13.0.0",
+    "npm": ">=6.0.0"
+  },
   "private": true,
   "proxy": "http://localhost:10000",
   "dependencies": {
