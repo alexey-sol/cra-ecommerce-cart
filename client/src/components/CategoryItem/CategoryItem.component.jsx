@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 
 import BaseButton from "components/BaseButton";
 import { addItemToCart } from "redux/cart/cart.actions";
-import { defaultProps, propTypes } from "./GenreItem.props";
-import styles from "./GenreItem.module.scss";
+import { defaultProps, propTypes } from "./CategoryItem.props";
+import styles from "./CategoryItem.module.scss";
 
-GenreItem.defaultProps = defaultProps;
-GenreItem.propTypes = propTypes;
+CategoryItem.defaultProps = defaultProps;
+CategoryItem.propTypes = propTypes;
 
-function GenreItem ({ item, onAddItemToCart }) {
+function CategoryItem ({ item, onAddItemToCart }) {
     const {
         album,
         artist,
@@ -23,6 +23,7 @@ function GenreItem ({ item, onAddItemToCart }) {
     };
 
     const handleClick = useCallback(() => onAddItemToCart(item), [item, onAddItemToCart]);
+    // TODO: check if the user is signed in
 
     return (
         <li className={styles.container}>
@@ -60,9 +61,9 @@ const mapDispatchToProps = (dispatch) => ({
     onAddItemToCart: (item) => dispatch(addItemToCart(item))
 });
 
-const ConnectedGenreItem = connect(
+const ConnectedCategoryItem = connect(
     null,
     mapDispatchToProps
-)(GenreItem);
+)(CategoryItem);
 
-export default ConnectedGenreItem;
+export default ConnectedCategoryItem;

@@ -5,31 +5,31 @@ import {
     takeEvery
 } from "redux-saga/effects";
 
-import { FETCH_GENRES_START } from "./shop.types";
+import { FETCH_CATEGORIES_START } from "./shop.types";
 import { convertCollectionsSnapshotToMap, firestore } from "utils/firebase/firebase";
-import { fetchGenresFailure, fetchGenresSuccess } from "./shop.actions";
+import { fetchCategoriesFailure, fetchCategoriesSuccess } from "./shop.actions";
 
-export function * fetchGenresAsync () {
+export function * fetchCategoriesAsync () {
     try {
-        const genreRef = firestore.collection("releases");
-        const snapshot = yield genreRef.get();
-        const genresMap = yield call(
+        const categoryRef = firestore.collection("releases");
+        const snapshot = yield categoryRef.get();
+        const categoriesMap = yield call(
             convertCollectionsSnapshotToMap,
             snapshot
         );
 
-        yield put(fetchGenresSuccess(genresMap));
+        yield put(fetchCategoriesSuccess(categoriesMap));
     } catch (error) {
-        yield put(fetchGenresFailure(error.message));
+        yield put(fetchCategoriesFailure(error.message));
     }
 }
 
-export function * fetchGenresStart () {
-    yield takeEvery(FETCH_GENRES_START, fetchGenresAsync);
+export function * fetchCategoriesStart () {
+    yield takeEvery(FETCH_CATEGORIES_START, fetchCategoriesAsync);
 }
 
 export function * shopSagas () {
     yield all([
-        call(fetchGenresStart)
+        call(fetchCategoriesStart)
     ]);
 }

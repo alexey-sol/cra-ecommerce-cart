@@ -92,7 +92,10 @@ function SignUp ({ onSignUpStart }) {
                     value={confirmPassword}
                 />
 
-                <BaseButton type="submit">
+                <BaseButton
+                    className={styles.button}
+                    type="submit"
+                >
                     SIGN UP
                 </BaseButton>
             </form>

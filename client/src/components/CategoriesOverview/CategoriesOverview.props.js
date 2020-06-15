@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
-const { object } = PropTypes;
+const { array } = PropTypes;
 
 export const defaultProps = {
-    genre: {}
+    categories: []
 };
 
 export const propTypes = {
-    genre: object
+    categories: array
 };

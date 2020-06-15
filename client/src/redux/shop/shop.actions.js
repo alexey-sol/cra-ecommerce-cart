@@ -1,7 +1,7 @@
 import {
-    FETCH_GENRES_FAILURE,
-    FETCH_GENRES_START,
-    FETCH_GENRES_SUCCESS
+    FETCH_CATEGORIES_FAILURE,
+    FETCH_CATEGORIES_START,
+    FETCH_CATEGORIES_SUCCESS
 } from "./shop.types";
 
 import {
@@ -9,37 +9,37 @@ import {
     firestore
 } from "utils/firebase/firebase";
 
-export function fetchGenresFailure (errorMessage) {
+export function fetchCategoriesFailure (errorMessage) {
     return {
         payload: errorMessage,
-        type: FETCH_GENRES_FAILURE
+        type: FETCH_CATEGORIES_FAILURE
     };
 }
 
-export function fetchGenresStart () {
+export function fetchCategoriesStart () {
     return {
-        type: FETCH_GENRES_START
+        type: FETCH_CATEGORIES_START
     };
 }
 
-export function fetchGenresStartAsync () {
+export function fetchCategoriesStartAsync () {
     return async (dispatch) => {
-        const genreRef = firestore.collection("genres");
-        dispatch(fetchGenresStart());
+        const categoryRef = firestore.collection("releases");
+        dispatch(fetchCategoriesStart());
 
         try {
-            const snapshot = await genreRef.get();
-            const genres = convertCollectionsSnapshotToMap(snapshot);
-            dispatch(fetchGenresSuccess(genres));
+            const snapshot = await categoryRef.get();
+            const categories = convertCollectionsSnapshotToMap(snapshot);
+            dispatch(fetchCategoriesSuccess(categories));
         } catch (error) {
-            dispatch(fetchGenresFailure(error.message));
+            dispatch(fetchCategoriesFailure(error.message));
         }
     };
 }
 
-export function fetchGenresSuccess (genres) {
+export function fetchCategoriesSuccess (categories) {
     return {
-        payload: genres,
-        type: FETCH_GENRES_SUCCESS
+        payload: categories,
+        type: FETCH_CATEGORIES_SUCCESS
     };
 }

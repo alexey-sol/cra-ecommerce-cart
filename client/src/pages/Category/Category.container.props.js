@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 
-const { array } = PropTypes;
+const { array, object } = PropTypes;
 
 export const defaultProps = {
     categories: []
 };
 
 export const propTypes = {
-    categories: array
+    categories: array,
+    match: object.isRequired
 };

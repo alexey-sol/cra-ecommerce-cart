@@ -66,11 +66,15 @@ function SignIn ({
                 />
 
                 <div className={styles.buttons}>
-                    <BaseButton type="submit">
+                    <BaseButton
+                        className={styles.button}
+                        type="submit"
+                    >
                         Sign in
                     </BaseButton>
 
                     <BaseButton
+                        className={styles.button}
                         isGoogleSignIn
                         onClick={onGoogleSignInStart}
                         type="button"

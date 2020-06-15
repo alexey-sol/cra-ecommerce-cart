@@ -4,7 +4,7 @@ import {
     FUTURE_POP,
     SOUNDTRACKS,
     SYNTHWAVE
-} from "utils/const/genres";
+} from "utils/const/categories";
 
 const SECTIONS = [{
     id: 1,

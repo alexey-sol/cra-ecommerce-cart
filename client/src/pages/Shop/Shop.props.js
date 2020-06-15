@@ -4,5 +4,5 @@ const { func, object } = PropTypes;
 
 export const propTypes = {
     match: object.isRequired,
-    onFetchGenresStart: func.isRequired
+    onFetchCategoriesStart: func.isRequired
 };

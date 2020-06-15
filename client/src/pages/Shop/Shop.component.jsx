@@ -3,32 +3,32 @@ import React, { Suspense, lazy, useEffect } from "react";
 import { connect } from "react-redux";
 
 import Spinner from "components/Spinner";
-import { fetchGenresStart } from "redux/shop/shop.actions";
+import { fetchCategoriesStart } from "redux/shop/shop.actions";
 import { propTypes } from "./Shop.props";
 import styles from "./Shop.module.scss";
 
-const Genre = lazy(() => import("pages/Genre"));
-const GenresOverview = lazy(() => import("components/GenresOverview"));
+const Category = lazy(() => import("pages/Category"));
+const CategoriesOverview = lazy(() => import("components/CategoriesOverview"));
 
 Shop.propTypes = propTypes;
 
-function Shop ({ onFetchGenresStart, match }) {
+function Shop ({ onFetchCategoriesStart, match }) {
     useEffect(() => {
-        onFetchGenresStart();
-    }, [onFetchGenresStart]);
+        onFetchCategoriesStart();
+    }, [onFetchCategoriesStart]);
 
     return (
         <section className={styles.container}>
             <Suspense fallback={<Spinner />}>
                 <Route
-                    component={GenresOverview}
+                    component={CategoriesOverview}
                     exact
                     path={match.path}
                 />
 
                 <Route
-                    component={Genre}
-                    path={`${match.path}/:genreId`}
+                    component={Category}
+                    path={`${match.path}/:categoryId`}
                 />
             </Suspense>
         </section>
@@ -36,7 +36,7 @@ function Shop ({ onFetchGenresStart, match }) {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    onFetchGenresStart: () => dispatch(fetchGenresStart())
+    onFetchCategoriesStart: () => dispatch(fetchCategoriesStart())
 });
 
 const ConnectedShop = connect(

@@ -1,12 +1,12 @@
 import {
-    FETCH_GENRES_FAILURE,
-    FETCH_GENRES_START,
-    FETCH_GENRES_SUCCESS
+    FETCH_CATEGORIES_FAILURE,
+    FETCH_CATEGORIES_START,
+    FETCH_CATEGORIES_SUCCESS
 } from "./shop.types";
 
 const INITIAL_STATE = {
+    categories: [],
     errorMessage: null,
-    genres: [],
     isFetching: false
 };
 
@@ -14,23 +14,23 @@ function shopReducer (state = INITIAL_STATE, action = {}) {
     const { payload, type } = action;
 
     switch (type) {
-        case FETCH_GENRES_FAILURE:
+        case FETCH_CATEGORIES_FAILURE:
             return {
                 ...state,
                 errorMessage: payload,
                 isFetching: false
             };
 
-        case FETCH_GENRES_START:
+        case FETCH_CATEGORIES_START:
             return {
                 ...state,
                 isFetching: true
             };
 
-        case FETCH_GENRES_SUCCESS:
+        case FETCH_CATEGORIES_SUCCESS:
             return {
                 ...state,
-                genres: payload,
+                categories: payload,
                 isFetching: false
             };
 

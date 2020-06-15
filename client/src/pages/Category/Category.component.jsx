@@ -1,17 +1,17 @@
 import React from "react";
 
-import GenreItem from "components/GenreItem";
-import { defaultProps, propTypes } from "./Genre.component.props";
-import styles from "./Genre.module.scss";
+import CategoryItem from "components/CategoryItem";
+import { defaultProps, propTypes } from "./Category.component.props";
+import styles from "./Category.module.scss";
 
-Genre.defaultProps = defaultProps;
-Genre.propTypes = propTypes;
+Category.defaultProps = defaultProps;
+Category.propTypes = propTypes;
 
-function Genre ({ genre }) {
-    const { title, items = [] } = genre;
+function Category ({ category }) {
+    const { title, items = [] } = category;
 
     const itemElements = items.map(item => (
-        <GenreItem
+        <CategoryItem
             item={item}
             key={item.id}
         />
@@ -30,4 +30,4 @@ function Genre ({ genre }) {
     );
 }
 
-export default Genre;
+export default Category;

@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 const { array } = PropTypes;
 
 export const defaultProps = {
-    genres: []
+    categories: []
 };
 
 export const propTypes = {
-    genres: array
+    categories: array
 };

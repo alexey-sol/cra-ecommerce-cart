@@ -1,0 +1,9 @@
+.container {
+    display: grid;
+    row-gap: 5rem;
+    list-style-type: none;
+
+    @media screen and (max-width: 400px) {
+        row-gap: 3rem;
+    }
+}

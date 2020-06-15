@@ -1,24 +1,24 @@
 import React from "react";
 
+import CategoryItem from "components/CategoryItem";
 import CustomLink from "components/CustomLink";
-import GenreItem from "components/GenreItem";
-import { defaultProps, propTypes } from "./GenrePreview.props";
-import styles from "./GenrePreview.module.scss";
+import { defaultProps, propTypes } from "./CategoryPreview.props";
+import styles from "./CategoryPreview.module.scss";
 
-GenrePreview.defaultProps = defaultProps;
-GenrePreview.propTypes = propTypes;
+CategoryPreview.defaultProps = defaultProps;
+CategoryPreview.propTypes = propTypes;
 
-function GenrePreview ({ items, title }) {
+function CategoryPreview ({ items, title }) {
     const filteredItemElements = items
-        .filter((item, index) => index < 4)
+        .filter((item, index) => index < 3)
         .map(item => (
-            <GenreItem
+            <CategoryItem
                 item={item}
                 key={item.id}
             />
         ));
 
-    const genrePath = `shop/${title.toLowerCase()}`;
+    const categoryPath = `shop/${title.toLowerCase()}`;
     const titleTooltipText = `Show all ${title}`;
 
     return (
@@ -27,7 +27,7 @@ function GenrePreview ({ items, title }) {
                 <CustomLink
                     className={styles.link}
                     title={titleTooltipText}
-                    to={genrePath}
+                    to={categoryPath}
                 >
                     {title.toUpperCase()}
                 </CustomLink>
@@ -40,4 +40,4 @@ function GenrePreview ({ items, title }) {
     );
 }
 
-export default GenrePreview;
+export default CategoryPreview;

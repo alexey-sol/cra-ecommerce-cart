@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 const { array, bool } = PropTypes;
 
 export const defaultProps = {
-    genres: [],
+    categories: [],
     isFetching: false
 };
 
 export const propTypes = {
-    genres: array,
+    categories: array,
     isFetching: bool
 };

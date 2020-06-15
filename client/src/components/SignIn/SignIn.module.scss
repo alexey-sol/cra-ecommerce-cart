@@ -21,20 +21,19 @@
     }
 
     .buttons {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1rem;
+
+        .button {
+            padding: 0 1rem;
+        }
     }
 
     @media screen and (max-width: 500px) {
         .buttons {
-            button {
-                width: 100%;
-            }
-
-            button:last-of-type {
-                margin-top: 1rem;
-            }
+            grid-template-columns: 1fr;
+            row-gap: 1rem;
         }
     }
 }
