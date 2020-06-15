@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 
-const { object } = PropTypes;
+const { func, object } = PropTypes;
 
 export const defaultProps = {
     category: {}
 };
 
 export const propTypes = {
-    category: object
+    category: object,
+    onSortItems: func.isRequired
 };

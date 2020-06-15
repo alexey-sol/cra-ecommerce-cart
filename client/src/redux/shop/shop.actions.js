@@ -1,7 +1,8 @@
 import {
     FETCH_CATEGORIES_FAILURE,
     FETCH_CATEGORIES_START,
-    FETCH_CATEGORIES_SUCCESS
+    FETCH_CATEGORIES_SUCCESS,
+    SORT_ITEMS
 } from "./shop.types";
 
 import {
@@ -41,5 +42,12 @@ export function fetchCategoriesSuccess (categories) {
     return {
         payload: categories,
         type: FETCH_CATEGORIES_SUCCESS
+    };
+}
+
+export function sortItems (options) {
+    return {
+        payload: options,
+        type: SORT_ITEMS
     };
 }

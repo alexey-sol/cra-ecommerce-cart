@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const { array, object } = PropTypes;
+const { array, func, object } = PropTypes;
 
 export const defaultProps = {
     categories: []
@@ -8,5 +8,6 @@ export const defaultProps = {
 
 export const propTypes = {
     categories: array,
-    match: object.isRequired
+    match: object.isRequired,
+    onSortItems: func.isRequired
 };

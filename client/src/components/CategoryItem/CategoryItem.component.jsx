@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { connect } from "react-redux";
+import classnames from "classnames";
 
 import BaseButton from "components/BaseButton";
 import { addItemToCart } from "redux/cart/cart.actions";
@@ -9,7 +10,12 @@ import styles from "./CategoryItem.module.scss";
 CategoryItem.defaultProps = defaultProps;
 CategoryItem.propTypes = propTypes;
 
-function CategoryItem ({ item, onAddItemToCart }) {
+function CategoryItem ({
+    isAscending,
+    item,
+    onAddItemToCart,
+    setSorting
+}) {
     const {
         album,
         artist,
@@ -23,6 +29,26 @@ function CategoryItem ({ item, onAddItemToCart }) {
     };
 
     const handleClick = useCallback(() => onAddItemToCart(item), [item, onAddItemToCart]);
+    const sortingIsOn = Boolean(setSorting);
+
+    const orderToChoose = (isAscending)
+        ? "descending"
+        : "ascending";
+
+    const artistFieldClassName = classnames(
+        styles.artist,
+        (sortingIsOn) ? styles.sortingIsOn : ""
+    );
+
+    const albumFieldClassName = classnames(
+        styles.album,
+        (sortingIsOn) ? styles.sortingIsOn : ""
+    );
+
+    const priceFieldClassName = classnames(
+        styles.price,
+        (sortingIsOn) ? styles.sortingIsOn : ""
+    );
 
     return (
         <li className={styles.container}>
@@ -40,15 +66,27 @@ function CategoryItem ({ item, onAddItemToCart }) {
             </section>
 
             <section className={styles.imageFooter}>
-                <div className={styles.artist}>
+                <div
+                    className={artistFieldClassName}
+                    onClick={sortingIsOn ? () => setSorting("artist") : null}
+                    title={sortingIsOn ? getFieldTitle("artist", orderToChoose) : ""}
+                >
                     {artist}
                 </div>
 
-                <div className={styles.album}>
+                <div
+                    className={albumFieldClassName}
+                    onClick={sortingIsOn ? () => setSorting("album") : null}
+                    title={sortingIsOn ? getFieldTitle("album", orderToChoose) : ""}
+                >
                     {`${album} (${year})`}
                 </div>
 
-                <span className={styles.price}>
+                <span
+                    className={priceFieldClassName}
+                    onClick={sortingIsOn ? () => setSorting("price") : null}
+                    title={sortingIsOn ? getFieldTitle("price", orderToChoose) : ""}
+                >
                     {`$${price}`}
                 </span>
             </section>
@@ -66,3 +104,7 @@ const ConnectedCategoryItem = connect(
 )(CategoryItem);
 
 export default ConnectedCategoryItem;
+
+function getFieldTitle (field, sortingOrder) {
+    return `Sort by ${field} (${sortingOrder})`;
+}

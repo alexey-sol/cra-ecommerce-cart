@@ -49,6 +49,7 @@ module.exports = {
         "jsx-a11y/no-noninteractive-element-interactions": 0,
         "jsx-a11y/no-static-element-interactions": 0,
         "jsx-a11y/label-has-for": [ 2, { "required": { "some": [ "nesting", "id" ] } }],
+        "no-case-declarations": 0,
         "no-confusing-arrow": 0,
         "no-restricted-syntax": 0,
         "no-use-before-define": 0,
