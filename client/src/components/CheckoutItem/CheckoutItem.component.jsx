@@ -80,11 +80,13 @@ function CheckoutItem ({
                 {price}
             </td>
 
-            <td
-                className={styles.removeButton}
-                onClick={() => onClearItem(cartItem)}
-            >
-                &#10005;
+            <td>
+                <div
+                    className={styles.removeButton}
+                    onClick={() => onClearItem(cartItem)}
+                >
+                    &#10005;
+                </div>
             </td>
         </tr>
     );

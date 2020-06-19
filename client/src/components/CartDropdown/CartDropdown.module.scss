@@ -7,7 +7,7 @@
     right: 0;
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: 40%;
     height: 34rem;
     padding: 2rem;
     border: 1px solid black;
@@ -31,7 +31,11 @@
         margin-top: auto;
     }
 
+    @media screen and (max-width: 800px) {
+        width: 60%;
+    }
+
     @media screen and (max-width: 500px) {
-        width: 20rem;
+        width: 22rem;
     }
 }

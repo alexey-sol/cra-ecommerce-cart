@@ -1,11 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { clearItemFromCart } from "redux/cart/cart.actions";
 import { defaultProps, propTypes } from "./CartItem.props";
 import styles from "./CartItem.module.scss";
 
 CartItem.defaultProps = defaultProps;
 CartItem.propTypes = propTypes;
 
-function CartItem ({ item }) {
+function CartItem ({ item, onClearItem }) {
     const {
         album,
         artist,
@@ -25,17 +28,37 @@ function CartItem ({ item }) {
                 title={description}
             />
 
-            <section className={styles.itemDetails}>
-                <span className={styles.description}>
-                    {description}
-                </span>
+            <section className={styles.content}>
+                <section className={styles.itemDetails}>
+                    <span className={styles.description}>
+                        {description}
+                    </span>
 
-                <span className={styles.price}>
-                    {`${quantity} x $${price}`}
-                </span>
+                    <span className={styles.price}>
+                        {`${quantity} x $${price}`}
+                    </span>
+                </section>
+
+                <div>
+                    <div
+                        className={styles.removeButton}
+                        onClick={() => onClearItem(item)}
+                    >
+                        &#10005;
+                    </div>
+                </div>
             </section>
         </section>
     );
 }
 
-export default CartItem;
+const mapDispatchToProps = (dispatch) => ({
+    onClearItem: (item) => dispatch(clearItemFromCart(item))
+});
+
+const ConnectedCartItem = connect(
+    null,
+    mapDispatchToProps
+)(CartItem);
+
+export default ConnectedCartItem;

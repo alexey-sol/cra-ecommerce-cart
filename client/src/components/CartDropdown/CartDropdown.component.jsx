@@ -14,6 +14,7 @@ CartDropdown.defaultProps = defaultProps;
 CartDropdown.propTypes = propTypes;
 
 function CartDropdown ({
+    cartButtonRef,
     cartItems,
     history,
     onToggleCartShown
@@ -22,14 +23,17 @@ function CartDropdown ({
     const dropdownRef = useRef(null);
 
     useEffect(() => {
+        const cartButton = cartButtonRef.current;
         const dropdown = dropdownRef.current;
 
-        if (!dropdown) {
+        if (!cartButton || !dropdown) {
             return;
         }
 
-        const handleClick = ({ target }) => {
-            const isClickOutside = !dropdown.contains(target);
+        const handleMousedown = ({ target }) => {
+            const isClickOutside =
+                !dropdown.contains(target) &&
+                !cartButton.contains(target);
 
             if (isClickOutside) {
                 onToggleCartShown();
@@ -42,14 +46,14 @@ function CartDropdown ({
             }
         };
 
-        document.addEventListener("click", handleClick);
+        document.addEventListener("mousedown", handleMousedown);
         document.addEventListener("keydown", handleKeydown);
 
         return () => {
-            document.removeEventListener("click", handleClick);
+            document.removeEventListener("mousedown", handleMousedown);
             document.removeEventListener("keydown", handleKeydown);
         };
-    }, [onToggleCartShown]);
+    }, [cartButtonRef, onToggleCartShown]);
 
     const cartItemElements = cartItems.map(cartItem => (
         <CartItem

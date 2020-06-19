@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useRef } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import classnames from "classnames";
@@ -15,6 +15,8 @@ import styles from "./Header.module.scss";
 Header.propTypes = propTypes;
 
 function Header ({ cartIsShown, onSignOutStart, user }) {
+    const cartButtonRef = useRef(null);
+
     const cartIconItemClassNames = classnames(
         styles.optionItem,
         styles.cartIconItem
@@ -43,12 +45,15 @@ function Header ({ cartIsShown, onSignOutStart, user }) {
                         : <Link to="/sign-in">SIGN IN</Link>}
                 </li>
 
-                <li className={cartIconItemClassNames}>
+                <li
+                    className={cartIconItemClassNames}
+                    ref={cartButtonRef}
+                >
                     <CartIcon />
                 </li>
             </ul>
 
-            {cartIsShown && <CartDropdown />}
+            {cartIsShown && <CartDropdown cartButtonRef={cartButtonRef} />}
         </section>
     );
 }

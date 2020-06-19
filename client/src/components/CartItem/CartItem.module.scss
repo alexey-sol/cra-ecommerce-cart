@@ -7,16 +7,28 @@
     .image {
         height: 7rem;
     }
+
+    .content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1rem 2rem;
+    }
     
     .itemDetails {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        padding: 1rem 2rem;
-      
+        padding-right: 2rem;
+
         .description {
             font-size: $font-size--small;
         }
+    }
+
+    .removeButton {
+        user-select: none;
+        cursor: pointer;
     }
 
     @media screen and (max-width: 500px) {
